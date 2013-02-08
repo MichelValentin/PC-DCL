@@ -1,0 +1,62 @@
+1  GOTO
+
+
+  Transfers control to a labeled statement in a command procedure.
+
+  Format
+
+      GOTO  label
+2  Label
+
+  Specifies a label of 1 to 255 alphanumeric characters that appears as
+  the first item on a  command  line.  A label may not contain embedded
+  blanks. When the GOTO command is  executed,  control  passes  to  the
+  command following the specified label.
+
+  When  you  use  a label in a command procedure, it must be terminated
+  with a colon (:).   If  you  use  duplicate labels, control is always
+  given to the label most recently read by DCL.
+
+2  Examples
+
+  1.  $ IF P1 .EQS. "HELP" THEN GOTO TELL
+      $ IF P1 .EQS. "" THEN GOTO TELL
+         .
+         .
+         .
+      $ EXIT
+      $ TELL:
+      $ TYPE SYS$INPUT
+      To use this procedure, you must enter a value for P1.
+         .
+         .
+         .
+      $ EXIT
+
+  In this example, the IF command checks the first parameter passed to
+  the  command  procedure;  if this parameter is the string HELP or if
+  the parameter is not  specified,  the  GOTO  command is executed and
+  control is passed to the line labeled TELL. Otherwise, the procedure
+  continues executing until the EXIT command is  encountered.  At  the
+  label  TELL,  a  TYPE command displays data in the input stream that
+  documents how to use the procedure.
+
+
+
+  2.  $ ON ERROR THEN GOTO CHECK
+        .
+        .
+      $ EXIT
+      $ CHECK:  ! Error handling routine
+        .
+        .
+        .
+      $ END:
+      $ EXIT
+
+  The ON command establishes an error-handling routine. If any command
+  or procedure subsequently executed  in the command procedure returns
+  an error or severe error, the GOTO command transfers control to  the
+  label CHECK.
+
+

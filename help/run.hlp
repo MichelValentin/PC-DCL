@@ -1,0 +1,30 @@
+1  RUN
+
+ Executes a Windows command or program.
+
+  Format:
+
+      RUN file-spec [p1 [p2 [...  pn]]]
+
+2  file-spec
+
+  Specify  a  Windows  command  or  program  or  batch  file  and it's
+  parameters as if it was entered at the DOS prompt.
+
+  Note that if the AllowDosCmd option in the customization file is set
+  to YES, the RUN command may be omitted, in this case, the command is
+  executed with the /WAIT qualifier unless it  is  prefixed  by  an  -
+  (hyphen) .
+
+2  /WAIT
+
+  /WAIT (default)
+  /NOWAIT
+
+  Waits  for  the  completion  of  the command before returning to the
+  command prompt or  starts  the  command  as  a  detached process and
+  returns immediatly to the command prompt.
+
+
+
+

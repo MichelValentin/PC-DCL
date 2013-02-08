@@ -1,0 +1,8 @@
+bin/
+test/
+
+*.exe
+*~
+dcl2
+dcl2c
+

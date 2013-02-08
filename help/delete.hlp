@@ -1,0 +1,226 @@
+1  DELETE
+
+  The DELETE commands perform the following functions:
+
+  Deletes one or more files from a mass storage disk  volume (see File). 
+  Deletes one or all symbol definitions from a local or global symbol table (see /SYMBOL). 
+  Deletes one or all key definitions from the key definitions table (see /KEY).
+
+2  DELETE FILE
+
+  Deletes one or more files from a mass storage disk volume.
+
+  Format
+
+      DELETE  filespec
+
+3  Filespec
+
+  Specifies the names of one or more files to be deleted from a  disk.
+  Wildcard characters can be used.
+
+  If  you omit the directory specification or device name, the current
+  default device and directory are assumed.
+
+3  /ALL
+
+  Selects all the files,  including  those  with  the HIDDEN or SYSTEM
+  attribute flag on.
+
+
+3  /BEFORE
+
+  /BEFORE=time
+
+  Selects only those files that are dated before the  specified  time.
+  You can specify either an absolute time or a combination of absolute
+  and  delta  times.   See  the  VMS  DCL Concepts Manual for complete
+  information on specifying time values. You can also use the keywords
+  NOW, TODAY, TOMORROW, and YESTERDAY.
+
+3  /CONFIRM
+
+  /CONFIRM
+
+  Controls whether a request  is  issued before each individual DELETE
+  operation to confirm that the operation should be performed on  that
+  file.  When  the  system issues the prompt, you can issue any of the
+  following responses:
+  YES    NO       QUIT
+  TRUE   FALSE
+  1      0        ALL    <RET>
+
+  You can use any  combination  of  upper-  and lowercase letters for
+  word responses. Word responses can be abbreviated  to  one  or  more
+  letters  (for  example, T, TR, or TRU for TRUE). Affirmative answers
+  are  YES,  TRUE,  and  1.   Negative   answers  are  NO,  FALSE,  0,
+  and <RET>. QUIT indicates that you want to stop processing  the
+  command  at  that  point.   When  you  respond with ALL, the command
+  continues to process, but no further prompts are given.  If you type
+  a response other than one of  those  in the list, the prompt will be
+  reissued.
+
+
+
+3  /ERASE
+
+  The disk space occupied by the file will be overwritten  before  the
+  file is actually deleted.
+
+
+3  /LOG
+
+  Controls whether the DELETE command displays the file specifications
+  of each file deleted.
+
+
+3  /SINCE
+
+  /SINCE=time
+
+  Selects only those files that are dated after the specified time.
+
+  You can specify either an absolute time or a combination of absolute
+  and  delta  times.   See  the  VMS  DCL Concepts Manual for complete
+  information  on  specifying  time  values.   You  can  also  use the
+  keywords TODAY, TOMORROW, and YESTERDAY.
+
+
+3  /SUBDIR
+
+   Use this flag for scanning subdirectories when using  WINDOWS  file
+   specifications.
+
+
+
+3  Examples
+
+  1.  $ DELETE   COMMON.SUM
+
+  The  DELETE  command  deletes  the  file COMMON.SUM from the current
+  default disk and directory.
+
+  2.  $ DELETE *.OLD
+
+  The DELETE command deletes all the files with file type OLD from the
+  default disk directory.
+
+
+
+2 DELETE SYMBOL
+
+  Deletes one or all symbol definitions  from a local or global symbol
+  table. The /SYMBOL qualifier is required.
+
+  Format
+
+      DELETE/SYMBOL  [symbol-name]
+
+3  Symbol-name
+
+  Specifies the name of the symbol to be deleted. A name  is  required
+  unless the /ALL qualifier is specified. The symbol-name parameter is
+  incompatible  with  the /ALL qualifier. Symbol names can have from 1
+  to 32 characters. By default, the DELETE/SYMBOL command assumes that
+  the symbol is in  the  local  symbol  table  for the current command
+  procedure.
+
+3  Qualifiers
+
+/ALL
+
+  Deletes all symbols from the specified table. If you do not  specify
+  either  the  /LOCAL or the /GLOBAL qualifier, all symbols defined at
+  the  current  command  level  are  deleted.  The  /ALL  qualifier is
+  incompatible with the symbol-name parameter.
+
+
+/GLOBAL
+
+  Deletes  the  symbol  from  the  global  symbol table of the current
+  process.
+
+
+
+/LOCAL
+
+  /LOCAL (default)
+
+  Deletes the symbol from  the  local  symbol  table  of  the  current
+  process.
+
+
+/LOG
+
+  Controls whether an informational  message listing each symbol being
+  deleted is displayed.
+
+3  Examples
+
+  1.  $ DELETE/SYMBOL/ALL
+
+  In this  example,  the  DELETE/SYMBOL  command  deletes  all  symbol
+  definitions at the current command level.
+
+  2.  $ DELETE/SYMBOL/LOG FOO
+      LOCAL symbol FOO has been deleted
+
+  In  this  example,  the DELETE/SYMBOL command deletes the symbol FOO
+  from the local symbol  table  for  the current process. In addition,
+  the /LOG qualifier causes  an  informational  message,  listing  the
+  symbol being deleted, to be displayed.
+
+  3.  $ DELETE/SYMBOL/GLOBAL PDEL
+
+  In  this example, the DELETE/SYMBOL command deletes the symbol named
+  PDEL from the global symbol table for the current process.
+
+
+
+2 DELETE KEY
+
+
+  Deletes one or all key  definitions  from the key definitions table.
+  The /KEY qualifier is required.
+
+  Format
+
+      DELETE/KEY  [key-name]
+
+3  Key-name
+
+  Specifies the name of the key to be deleted.   A  name  is  required
+  unless  the  /ALL  qualifier is specified. The key-name parameter is
+  incompatible  with  the  /ALL  qualifier.  Key  names  can  have the
+  following values :
+
+  F1 through F12,  SF1 through SF12
+
+
+3  Qualifiers
+
+/ALL
+
+  Deletes all key definitions.
+  The /ALL qualifier is incompatible with the key-name parameter.
+
+/LOG
+
+  Controls  whether  an  informational  message   listing   each   key
+  definition being deleted is displayed.
+
+3  Examples
+
+  1.  $ DELETE/KEY/ALL
+
+  In this example, the DELETE/KEY command deletes all key
+  definitions.
+
+  2.  $ DELETE/KEY/LOG SF10
+  Key definition SF10 has been deleted
+
+  In  this  example, the DELETE/KEY command deletes the key definition
+  SF10.  In  addition,  the  /LOG  qualifier  causes  an informational
+  message, listing the key definition being deleted, to be displayed.
+
+

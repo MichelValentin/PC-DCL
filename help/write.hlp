@@ -1,0 +1,56 @@
+1  WRITE
+
+  Writes the  specified  data  to  the  output  file  indicated by the
+  logical name. The data is written as one record in the output file.
+
+  Format:
+
+      WRITE  logical-name expression
+
+2 logical-name
+
+  Specifies the logical name assigned to the file to which a record is
+  to be written. Use the logical name assigned  by  the  OPEN  command
+  when the file was opened.
+
+2  expression
+
+  Specifies  data to be written as a single record to the output file.
+  The maximum size of any record that can be written is 1024 bytes.
+
+2  /ERROR
+
+  /ERROR=label
+
+  Specifies a label on  a  line  in  the  command procedure to receive
+  control if the write request  results  in  an  error.  If  no  error
+  routine  is  specified and an error occurs during the writing of the
+  file, the current ON  condition  action  is taken. The error routine
+  specified for  this  qualifier  takes  precedence  over  any  action
+  statement indicated in an ON command. If an error occurs and control
+  passes  successfully to the target label, the reserved global symbol
+  $STATUS retains the code for the error that caused the error path to
+  be taken.
+
+2  /POSITION
+
+  /POSITION=(Line,Column)
+
+  Specifies a screen position  to  move  the  cursor before writing to
+  SYS$OUTPUT. If omitted, output is  written  at  the  current  cursor
+  position.
+
+
+2  Examples
+
+  1.  $ WRITE SYS$OUTPUT "Beginning second phase of tests"
+
+      The WRITE command writes a single line of text to the current output device.
+  
+  2.  $ OPEN/APPEND OUTPUT_FILE DBA1:[PGM]PLAN.DAT
+      $ WRITE OUTPUT_FILE "BEGINNING PHASE 3"
+
+      The  OPEN/APPEND  command  opens the file PLAN.DAT and positions
+      the pointer at the end of  the  file. The WRITE command writes a
+      record to the end of the file PLAN.DAT.
+

@@ -1,0 +1,57 @@
+1  Additional
+
+  This page describes some non  standard  features of PC-DCL. In fact,
+  features that are not part of the standard VMS-DCL but that I  found
+  interesting to add...
+
+
+2  REPEAT
+
+  REPEAT. . .  UNTIL condition
+
+  $ REPEAT 
+  .
+  .
+  . 
+  $ UNTIL condition
+  
+2  WHILE
+
+  $ WHILE condition DO . . .  ENDWHILE
+  
+  $ WHILE condition DO 
+  .
+  .
+  . 
+  $ ENDWHILE 
+
+2  SET STEP
+
+  Enter  a  line by line execution mode to debug procedure files.  The
+  line about to be  executed  is  displayed  then, you are prompted to
+  enter a command.
+  The command may be one of the following :
+
+  STEP:   Execute the line. 
+  RESUME: quit the debug mode and resume the procedure 
+  CANCEL: quit the debug mode and cancel the procedure 
+
+  ANY other command that do not affect the procedure execution flow.
+  (assignments, show ...) 
+
+  Hint : assign the STEP command to a function key. 
+
+      
+2 :command
+
+  When a DOS command is about to be executed, PC-DCL tries to translate
+  any PC-DCL file specifications it finds into DOS format.
+  If you don't want this to happen, precede the command by ':'. 
+
+
+2  SET PROMPT 
+
+  In the PROMPT specification, $P and $G strings are expanded as they 
+  are in DOS.
+
+

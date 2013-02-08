@@ -1,0 +1,139 @@
+1  Specify 
+
+  This help category contains information on the syntax of various
+  entities used in PC-DCL.
+
+2  Date_Time
+
+  When a  command  requires  a  qualifier  that  specifies a date/time
+  value, the value is either an absolute time , a  delta  time,  or  a
+  combination  of  the  two.   Absolute time is a specific date and/or
+  time of day. An absolute date/time has one of the following formats:
+
+  [dd-mmm-yyyy[:]][hh:mm:ss.cc]
+  TODAY
+  YESTERDAY
+  TOMORROW
+
+  If you specify both the date  and the time, the intervening colon is
+  required.  You can omit any of the trailing fields in  the  date  or
+  time.  You can omit any of the fields in the middle of the format as
+  long  as you specify the punctuation marks.  Delta time is an offset
+  from the current time to a time  in the future. A delta time has the
+  following format:
+
+  [dddd-] [hh:mm:ss.cc]
+
+  You can truncate delta time on the right.  You can also omit any  of
+  the  fields  in  the middle of the format as long as you specify the
+  punctuation marks.
+
+  Combination time consists of an absolute  time value plus or minus a
+  delta time value. A combination time has the following format:
+     
+  &quot;[absolute time][+delta time]&quot;
+  [absolute time][-delta time]
+     
+  You can omit the absolute time value. If you do, the delta  time  is
+  offset  from  the  current  date  and time. Whenever a plus sign (+)
+  precedes the delta time value, enclose the entire time specification
+  in quotes.
+
+
+2  Expression
+
+  When DCL evaluates an expression, it determines a value based on the
+  operations specified in the expression.  The value can be an integer
+  or a character  string.  Some  expression operators are conventional
+  mathematical symbols, for example, plus  sign  (+).  Others  specify
+  logical and comparison operations, and consist of letters surrounded
+  byperiods,  for  example,  .EQS. Operators are assigned a precedence
+  which determines their order  of  evaluation. Parentheses may always
+  be used to override this order.
+
+3  Arithmetic
+
+  The operator  with  the  highest  precedence  in  an  expression  is
+  evaluated  first.  Following  this,  the  next  highest  operator is
+  valuated,  and  so  on.   Operators  with  the  same  precedence are
+  evaluated from left to right, as they appear in the expression.
+
+  Operator   Precedence    Description
+         
+  *           6             Arithmetic times
+  /           6             Arithmetic divide
+  +           5             Arithmetic plus
+  -           5             Arithmetic minus
+  .EQ.        4             Arithmetic equal
+  .GE.        4             Arithmetic greater than or equal
+  .GT.        4             Arithmetic greater than
+  .LE.        4             Arithmetic less than or equal
+  .LT.        4             Arithmetic less than
+  .NE.        4             Arithmetic not equal
+  .NOT.       3             Logical NOT
+  .AND.       2             Logical AND
+  .OR.        1             Logical OR 
+
+3  String
+
+  The operator  with  the  highest  precedence  in  an  expression  is
+  evaluated  first.  Following  this,  the  next  highest  operator is
+  evaluated, and  so  on.   Operators  with  the  same  precedence are
+  evaluated from left to right, as they appear in the expression.
+
+  Operator    Precedence  Description 
+             
+  +           5           String concatenation 
+  -           5           String reduction 
+  .EQS.       4           String equal 
+  .GES.       4           String greater than or equal
+  .GTS.       4           String greater than
+  .LES.       4           String less than or equal
+  .LTS.       4           String less than
+  .NES.       4           String not equal 
+
+
+2  File_Spec
+
+  File  specifications  provide  the  system  with   the   information
+  necessary  to  identify  a  unique  file or device. Depending on the
+  value of the FILESPECS item in the customization file (DCL.INI), the
+  format will be the standard  Windows  or  the  VMS style. In the VMS
+  style,    a    file    spec    has     the     following     format:
+  node::device:[directory]filename.type;version  The punctuation marks
+  are required to separate the fields of the file spec.
+
+  These fields are:
+  node         Network node name
+  device       Device name
+  directory    Directory name
+  filename     File name
+  type         File type
+  version      File version number
+
+  Due to the operating system llimitations, version field is ignored.
+
+
+2  Integer
+
+   DCL treats all numeric values as integers. 
+
+2  String
+
+  A character string value is  represented as a sequence of characters
+  enclosed in quotation marks ("). A quotation  mark  in  a  character
+  string  must  be  represented  by  two  quotation  marks. In certain
+  contexts, the quotation marks are optional.
+
+
+2  Symbol
+
+  A symbol is an entity which  has  a  name and a value.  The name can
+  consist of the letters, digits, underscore (_) and dollar sign ($). 
+  It can be composed of up to 32 characters.  The value of the  symbol
+  can  be  a  32-bit  integer  or  a  string  of  between zero and 255
+  characters.
+
+  Symbols are defined in DCL with the assignment statement.
+
+

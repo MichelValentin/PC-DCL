@@ -1,0 +1,119 @@
+1  TYPE 
+
+  Displays the contents of a  file  or  group  of files on the current
+  output device.
+
+  Format:
+
+      TYPE  file-spec
+
+2  filespec
+
+  Specifies one or more files to be displayed.  If you specify a  file
+  name  and  do  not  specify  a  file type, the TYPE command uses the
+  default file type LIS.
+
+  You can specify wildcard characters  in place of the directory name,
+  file name, file type,  or  file  version  number  field.   The  TYPE
+  command displays all files that satisfy the file description.
+
+2  /ALL
+
+ selects all the  files,  including  those  with  the HIDDEN or SYSTEM
+ attribute flag on.
+
+2  /BEFORE
+
+  /BEFORE=time
+
+  Selects only those files that are dated before the  specified  time.
+  You can specify either an absolute time or a combination of absolute
+  and  delta  times.   See  the  VMS  DCL Concepts Manual for complete
+  information on specifying time values. You can also use the keywords
+  NOW, TODAY, TOMORROW, and YESTERDAY.
+
+
+2  /CONFIRM
+
+  Controls  whether a request is issued before each  individual  PRINT
+  operation  to confirm that the operation should be performed on that
+  file.
+  When the system  issues  the  prompt,  you  can  issue  any  of  the
+  following responses: 
+
+  YES    NO       QUIT
+  TRUE   FALSE
+  1      0        ALL
+         
+
+  You can use any combination of upper- and lowercase letters for word
+  responses.  Word responses can be abbreviated to one or more letters
+  (for example, T, TR, or TRU for TRUE).  Affirmative answers are YES,
+  TRUE, and  1.   Negative  answers  are  NO,  FALSE,  0,  and  . QUIT
+  indicates that you want to  stop  processing  the  command  at  that
+  point.  When you respond with ALL, the command continues to process,
+  but no further prompts are given.  If you type a response other than
+  one of those in the list, the prompt will be reissued.
+
+
+2  /OUTPUT
+
+  /OUTPUT=file-spec
+
+  Controls  where  the  output  of the command is sent.  If you do not
+  enter the qualifier,  the  output  is  sent  to  the current process
+  default output stream or device,  identified  by  the  logical  name
+  SYS$OUTPUT.
+
+  If you enter /OUTPUT with a partial file specification (for example,
+  /OUTPUT=[JONES]),  TYPE is the default file name and LIS the default
+  file type.  If you enter  a  file  specification, it may not include
+  any wildcard characters.
+
+  The /OUTPUT qualifier is incompatible with the /PAGE qualifier.
+
+
+2  /PAGE
+
+  Requests that output from the TYPE command be displayed  one  screen
+  at  a time.  
+
+  The /PAGE qualifier is incompatible with the  /OUTPUT qualifier.
+
+
+2  /SINCE
+
+  /SINCE=time
+
+  Selects only those files that are dated after the specified time.
+
+  You can specify either an absolute time or a combination of absolute
+  and delta times.  See the  VMS  DCL  Concepts  Manual  for  complete
+  information  on  specifying  time  values.   You  can  also  use the
+  keywords TODAY, TOMORROW, and YESTERDAY.
+
+
+2  /SUBDIR
+
+  Use this flag for  scanning  subdirectories  when using WINDOWS file
+  specifications.
+
+2  Examples
+
+  1.  $ TYPE  COMMON.DAT
+      The TYPE command requests that the file COMMON.DAT be  displayed  at
+      the terminal. 
+  2.  $ TYPE *.DAT
+      This is the first line in the file AA.DAT.
+      .
+      .
+      . 
+      This is the first line in the file BB.DAT.
+      .
+      .
+      . 
+      The TYPE command contains a wildcard character in place of the  file
+      name.
+      All  files with file types of DAT are scheduled for display.
+
+

@@ -1,0 +1,64 @@
+1  GOSUB
+
+
+  Transfers control to a labeled subroutine  in  a  command  procedure
+  without creating a new procedure level.
+
+  Format
+
+      GOSUB  label
+2  Label
+
+  Specifies a label of 1 to 255 alphanumeric characters  that  appears
+  as  the  first  item  on  a  command  line.  A label may not contain
+  embedded blanks. When the GOSUB  command is executed, control passes
+  to the command following the specified label.
+
+  The label can precede or follow the GOSUB statement in  the  current
+  command  procedure.  When you use a label in a command procedure, it
+  must be terminated with a  colon  (:).  If you use duplicate labels,
+  control is always given to the label most recently read by DCL.
+
+
+2  Example
+
+  $!
+  $! GOSUB.COM
+  $!
+  $ SHOW TIME
+  $ GOSUB TEST1
+  $ WRITE SYS$OUTPUT "success completion"
+  $ EXIT
+  $!
+  $! TEST1 GOSUB definition
+  $!
+  $ TEST1:
+  $     WRITE SYS$OUTPUT "This is GOSUB level 1."
+  $     GOSUB TEST2
+  $     RETURN %X1
+  $!
+  $! TEST2 GOSUB definition
+  $!
+  $ TEST2:
+  $     WRITE SYS$OUTPUT "This is GOSUB level 2."
+  $     GOSUB TEST3
+  $     RETURN
+  $!
+  $! TEST3 GOSUB definition
+  $!
+  $ TEST3:
+  $     WRITE SYS$OUTPUT "This is GOSUB level 3."
+  $     RETURN
+
+  This sample command procedure shows how  to use the GOSUB command to
+  transfer control to labeled subroutines. The GOSUB command transfers
+  control to the subroutine labeled TEST1. The procedure executes  the
+  commands  in  subroutine  TEST1, branching to the subroutine labeled
+  TEST2. The procedure then executes the commands in subroutine TEST2,
+  branching  to  the  subroutine  labeled  TEST3.  Each  subroutine is
+  terminated by the RETURN  command.  After  TEST3  is  executed,  the
+  RETURN  command  returns  control back to the command line following
+  each calling GOSUB statement. At  this point, the procedure has been
+  successfully executed.
+
+

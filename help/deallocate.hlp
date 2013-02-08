@@ -1,0 +1,30 @@
+1  DEALLOCATE
+
+  Cancels logical name assignments made  with the ALLOCATE command.
+
+  Format:
+
+      DEALLOCATE   logical-name[:]
+
+2  Logical-name[:]
+
+  Specifies the logical_name of the device to be deallocated.
+
+2  /ALL
+
+  Requests  that  all   devices   you   have  currently  allocated  be
+  deallocated.  If you specify /ALL, you cannot specify a device name.
+
+
+2  Examples
+
+  1.  $ DEALLOCATE  DISK1:
+
+  The DEALLOCATE command deallocates the logical device DISK1:
+
+
+  2.  $ DEALLOCATE/ALL
+
+  The DEALLOCATE command deallocates all devices  that  are  currently allocated.
+
+

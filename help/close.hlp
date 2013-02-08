@@ -1,0 +1,67 @@
+1  CLOSE
+
+
+  Closes a file that  was  opened  for  input  or output with the OPEN
+  command, and deassigns the logical name specified when the file  was
+  opened.
+
+  Format:
+
+      CLOSE logical-name[:]
+
+2  logical-name[:]
+
+  Specifies  the  logical name assigned to the file when it was opened
+  with the OPEN command.
+
+
+2  /ERROR
+
+  /ERROR=label
+
+  Specifies a label in the command  procedure to receive control if an
+  error occurs when you are closing a file that was  opened  with  the
+  OPEN  command.  The error routine specified for this qualifier takes
+  precedence over any action statement  indicated in an ON command. If
+  /ERROR is not specified and an error occurs during  the  closing  of
+  the  file,  the  current  ON  condition action is taken. If an error
+  occurs and  the  target  label  is  successfully  given control, the
+  global symbol $STATUS retains the code for the error that caused the
+  error path to be taken.
+
+2  /LOG
+
+  Controls whether a warning message is generated when you attempt  to
+  close  a  file that was not opened by DCL. If you specify the /ERROR
+  qualifier, the /LOG qualifier  has  no  effect.  If the file has not
+  been opened by DCL, the error branch is  taken  and  no  message  is
+  displayed.
+
+2  /DISPOSITION=option
+
+  Specifies what action to take when the file is closed. The options are:
+  DELETE            Delete the file.
+  KEEP (default)    Keep the file.
+  PRINT             Print the file (not implemented).
+  SUBMIT            Submit the file (not implemented).
+
+2  Example
+
+  $OPEN/READ INPUT_FILE TEST.DAT
+  $ READ_LOOP:
+  $ READ/END_OF_FILE=NO_MORE INPUT_FILE
+  DATA_LINE
+  .
+  .
+  .
+  $ GOTO READ_LOOP
+  $ NO_MORE:
+  $ CLOSE INPUT_FILE
+
+  The  OPEN command opens the file TEST.DAT and assigns it the logical
+  name of INPUT_FILE. The  /END_OF_FILE  qualifier on the READ command
+  requests  that,  when  the  end-of-file  is  reached,  the   command
+  interpreter  should  transfer  control  to  the  line  at  the label
+  NO_MORE. The CLOSE command closes the input file.
+
+

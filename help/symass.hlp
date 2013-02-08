@@ -1,0 +1,85 @@
+1  symbol assign
+
+ ==     Symbol assign
+
+ Defines a symbolic name for a character string or integer value.
+
+  Format:
+
+      symbol-name =[=] expression 
+
+2  Symbol-name    
+
+  Defines a 1 through  32  character  alphanumeric string name for the
+  symbol. The symbol name must  begin  with  an  alphabetic  character
+  (uppercase  and lowercase characters are equivalent), an underscore,
+  or a dollar sign. After  the  first  character, the name can contain
+  any alphanumeric characters. If you specify a single equal sign  (=)
+  in  the assignment statement, the symbol name is placed in the local
+  symbol table for the  current  command  level. If you specify double
+  equal signs (==) in the assignment statement,  the  symbol  name  is
+  placed in the global symbol table.
+
+2  Expression
+
+  Specifies  the  value  on  the  right-hand  side  of  an  assignment
+  statement. An expression can consist of a character string value, an
+  integer  value,  a symbol name, a lexical function, or a combination
+  of these entities. The  components  of  an expression are evaluated,
+  and the result is  assigned  to  a  symbol.  All  literal  character
+  strings  must  be  enclosed  in  quotation  marks. If you specify an
+  expression containing a  symbol,  the  command  interpreter uses the
+  symbol's  value  in  evaluating  the  expression.  The   result   of
+  expression  evaluation  is  either  a character string or an integer
+  value. The data type of a  symbol  is determined by the data type of
+  the expression. If the expression evaluates to a string, the  symbol
+  is  assigned  a  string  value.  If  the  expression evaluates to an
+  integer, the symbol  is  assigned  an  integer  value. PC-DCL uses a
+  buffer that is 1024 bytes long to hold an assignment statement,  and
+  to  evaluate  the  expression.  The  length  of the symbol name, the
+  expression, and  the  expression's  calculations  cannot exceed 1024
+  bytes.
+
+2  Examples
+
+  1.  $ LIST == "DIRECTORY" 
+      $ TIME == "SHOW TIME" 
+      $ SS == "SHOW SYMBOL" 
+  The file SYNONYM.COM contains the assignment statements shown; these
+  are  user-defined  synonyms  for  commands.  Execute  this   command
+  procedure as follows:
+  $ @SYNONYM
+  After  the  command procedure creates the global symbol definitions,
+  you can use these synonyms  (LIST,  TIME, and SS) at the interactive
+  command level. Note that the assignments are global; otherwise,  the
+  symbol  names  would  have  been  deleted after the file SYNONYM.COM
+  completed execution.
+
+  2.  $ COUNT = 0 
+      $ LOOP:
+      $ COUNT = COUNT + 1
+      . . . 
+      $ IF COUNT .LT.5 THEN GOTO LOOP
+
+  The symbol COUNT is initially assigned  a numeric value of 0; a loop
+  is established to increment the value of COUNT by 1  each  time  the
+  loop is entered. Note that when the symbol name COUNT appears on the
+  right-hand  side  of an arithmetic assignment statement, the command
+  interpreter automatically  substitutes  its  current  value.  The IF
+  command tests the value  of  COUNT;  if  it  is  less  than  5,  the
+  procedure  branches to the label LOOP and the statements between the
+  label LOOP through the IF command are executed again. When the value
+  of the symbol count reaches  5,  the  loop is not executed again and
+  the command following the IF command is executed.
+
+  3.  $ A = 25
+      $ CODE = 4 + F$INTEGER("6") - A 
+      $ SHOW SYMBOL CODE CODE = -15
+
+  This example contains two assignment statements. The first statement
+  assigns the  value  25  to  the  symbol  A.  The  second  assignment
+  statement  evaluates  an  expression  containing  an  integer (4), a
+  lexical function (F$INTEGER("6")), and  the  symbol A. The result of
+  the expression, -15, is assigned to the symbol CODE.
+
+

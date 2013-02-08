@@ -1,0 +1,14 @@
+1  CONTINUE
+
+  The CONTINUE command serves as  the  target command of an IF command
+  in a command procedure. CONTINUE is also a target  command  when  it
+  follows  a  label that is the target of a GOTO command. The CONTINUE
+  command has no effect at the command level.
+
+  Format:
+
+      CONTINUE
+
+
+
+

@@ -1,0 +1,145 @@
+1 CALL
+
+  Tranfers control to a labeled subroutine within a command procedure.
+
+  The CALL command, like the  @ (execute procedure) command, creates a
+  new procedure level.
+
+  The SUBROUTINE and ENDSUBROUTINE commands define the  beginning  and
+  end  of  the  subroutine.  The  SUBROUTINE command must be the first
+  executable statement in a subroutine.
+
+  Format:
+
+      CALL label [p1[p2[... p8]]] 
+2  label
+
+  Specifies a 1 through  31  alphanumeric character label appearing as
+  the first item on a command line. A label may not  contain  embedded
+  blanks.  When  the  CALL  command is executed, control passes to the
+  command following the  specified  label.  The  label  can precede or
+  follow the CALL statement in the current command procedure. When you
+  use a label in a command procedure, it must  be  terminated  with  a
+  colon.  All  labels  are  procedure level dependent except for those
+  labels that define subroutine  entry  points. These labels are local
+  to the current command procedure file level. Subroutine entry points
+  labels must be unique.
+
+
+
+2  parameters
+
+  parameters p1 [p2 [... p8]]
+
+  Specifies  from  one  to  eight  optional  parameters to pass to the
+  command procedure. The parameters  assign character string values to
+  the symbols named P1, P2, and so on in the  order  of  entry,  to  a
+  maximum  of  eight. Separate each parameter with one or more blanks.
+  Use quotation marks  ("  ")  to  specify  a  null parameter. You can
+  specify  a  parameter  with  a  character  string  value  containing
+  alphanumeric or special characters, with the following restrictions:
+
+
+  The command interpreter converts alphabetic characters to  uppercase
+  and  uses blanks to delimit each parameter. To pass a parameter that
+  contains embedded blanks  or  literal  lowercase  letters, place the
+  parameter in quotation marks. If the first parameter begins  with  a
+  slash  character  (/),  you  must enclose the parameter in quotation
+  marks.
+
+
+  To pass  a  parameter  that  contains  literal  quotation  marks and
+  spaces, enclose the entire string  in  quotation  marks  and  use  a
+  double set of quotation marks within the string. For example: $ CALL
+  SUB1  "Never  say  ""quit"""  When  control  transfers  to SUB1, the
+  parameter P1 is equated to the  string: Never say "quit" If a string
+  contains quotation marks and does not contain spaces, the  quotation
+  marks  are  preserved  in  the  string  and  the  letters within the
+  quotation marks  remain  in  lowercase.  For  example:  $  CALL SUB2
+  abc"def"ghi When control transfers to  SUB2,  the  parameter  P1  is
+  equated to the string: ABC"def"GHI
+
+  To use a symbol as a parameter, enclose the symbol in apostrophes to
+  force  symbol  substitution.  For example: $ NAME = "JOHNSON" $ CALL
+  INFO  'NAME'  The  apostrophes  cause  the  value  "JOHNSON"  to  be
+  substituted for the symbol  NAME. Therefore, the parameter "JOHNSON"
+  is passed as P1 to the subroutine INFO.
+
+
+
+2 /OUTPUT
+
+  /OUTPUT=file-spec
+
+  Requests that all output directed to the logical  device  SYS$OUTPUT
+  be  written  to  the  file or device specified. System responses and
+  error messages are written to SYS$ERROR  as well as to the specified
+  file. If you specify /OUTPUT, the qualifier must immediately  follow
+  the  CALL  command. The default output file type is LIS. No wildcard
+  characters are allowed  in  the  output  file specification. You can
+  also redefine SYS$OUTPUT to  redirect  the  output  from  a  command
+  procedure.  If  you place the command: $ DEFINE SYS$OUTPUT file-spec
+  as the first line in a command procedure, output will be directed to
+  the file you specify. When  the  procedure exits, SYS$OUTPUT will be
+  restored to its original equivalence string. This produces the  same
+  result  as  using the /OUTPUT qualifier when you execute the command
+  procedure.
+
+
+
+2  Examples 
+
+ 1.   $
+      $! CALL.COM
+      $ 
+      $! Define subroutine SUB1 
+      $
+      $ SUB1: SUBROUTINE
+      .
+      .
+      $ CALL SUB2
+      !Invoke SUB2 from within SUB1 . . 
+      $ @FILE
+      !Invoke another procedure command file
+      .
+      .
+      $ EXIT
+      $ ENDSUBROUTINE 
+      !End of SUB1 definition
+      $!
+      $! Define subroutine SUB2
+      $!
+      $ SUB2: SUBROUTINE
+      .
+      .
+      $ EXIT
+      $ ENDSUBROUTINE
+      !End of SUB2 definition
+      $!
+      $! Start of main routine. At this point, both SUB1 and SUB2 
+      $! have been defined but none of the previous commands have 
+      $! been executed. 
+      $! 
+      $ START: 
+      $ CALL/OUTPUT=NAMES.LOG SUB1 "THIS IS P1"
+      .
+      . 
+      $ CALL SUB2 "THIS IS P1" "THIS IS P2"
+      .
+      .
+      $EXIT !Exit this command procedure file
+
+  This command procedure shows how to  use CALL to transfer control to
+  labeled subroutines. The example also shows  that  you  can  call  a
+  subroutine  or  another  command  file from within a subroutine. The
+  CALL command invokes the  subroutine  SUB1,  directing output to the
+  file NAMES.LOG and allowing other users write access  to  the  file.
+  The  subroutine  SUB2  is  called  from  within  SUB1. The procedure
+  executes SUB2 and then  uses  the  @  (Execute Procedure) command to
+  invoke the command procedure FILE.DCL. When all the commands in SUB1
+  have executed, the CALL command in the main procedure calls  SUB2  a
+  second time. The procedure continues until SUB2 has executed.
+
+
+
+

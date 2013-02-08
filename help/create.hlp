@@ -1,0 +1,57 @@
+1  CREATE
+
+  File
+
+      Creates a sequential text  file  (or files). Specify the content
+      of the file on the lines following the command, one  record  per
+      line. In interactive mode, terminate the file input with CTRL/Z.
+      In  a  command  procedure,  terminate the file input with a line
+      beginning with a dollar sign in column 1 (or with the end of the
+      command procedure).
+
+  Directory
+
+      Creates a new directoy or subdirectory. The /DIRECTORY qualifier
+      is required.
+
+      Format:
+
+          CREATE  file-spec
+
+2  file-spec
+
+      Specifies the name  of  the  files  or  directory to be created.
+      Wildcard characters are not allowed. If you omit either the file
+      name or the file type, the CREATE command does  not  supply  any
+      defaults.  The  file name or file type is null. If the specified
+      file already exists, it is overwritten.
+
+
+2  /DIRECTORY
+
+  Instructs  the  CREATE  command   to   create  a  new  directory  or
+  subdirectory.
+
+
+2  /LOG
+
+  Controls whether the CREATE command displays the file  specification
+  of the file that it has created.
+
+
+2  Example
+
+  $ CREATE   A.DAT
+  Input line one for A.DAT...
+  Input line two for A.DAT...
+  .
+  .
+  .
+  ^Z
+  $
+
+  After  you  issue  the  CREATE command from the terminal, the system
+  reads input  lines  into  the  sequential  file  A.DAT  until CTRL/Z
+  terminates the input.
+
+

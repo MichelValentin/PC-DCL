@@ -1,0 +1,102 @@
+1  READ 
+
+  Reads a single record from a specified input file  and  assigns  the
+  contents of the record to a specified symbol name.
+
+  Format: 
+
+      READ  logical-name[:] symbol-name 
+
+2  logical-name[:]
+
+  Specifies the logical name of the input file from which a record  is
+  to  be read.  Use the logical name assigned by the OPEN command when
+  the file was opened.  (The OPEN  command assigns a logical name to a
+  file and places the name in the process logical name table.)
+
+
+2  symbol-name
+
+  Specifies a 1- through 255-alphanumeric  character symbol name to be
+  equated to the contents of the record being  read.   A  symbol  name
+  must start with an alphabetic letter, underscore, or dollar sign.
+
+  When  you  specify  a  symbol name for the READ command, the command
+  interpreter places the symbol name in the local symbol table for the
+  current command level.  If the  symbol  is already defined, the READ
+  command redefines it to the new value being read.
+
+2  /END_OF_FILE
+
+  /END_OF_FILE=label
+
+  Specifies the label on a line in the current command procedure where
+  control is transferred after the last record in a file is read. When
+  the  last  record  in  the file is read, the system returns an error
+  condition indicating the end-of-file.  If the /END_OF_FILE qualifier
+  is specified,  the  command  interpreter  transfers  control  to the
+  command line at the specified label.
+
+  If /END_OF_FILE is not specified, then control is given to the error
+  label specified with the /ERROR qualifier when  the  end-of-file  is
+  reached.   If neither /ERROR nor /END_OF_FILE is specified, then the
+  current ON condition action is taken.
+
+2  /ERROR
+
+  /ERROR=label
+
+  Specifies a label on a line in  the  command  procedure  to  receive
+  control  if  the  read  request  results  in  an error.  If no error
+  routine is specified and an  error  occurs during the reading of the
+  file, the current ON condition action is taken.
+
+  The error routine specified for this qualifier takes precedence over
+  any action statement indicated in an ON command.
+
+  If an error occurs  and  the  target  label  is  successfully  given
+  control, the reserved global symbol $STATUS retains the code for the
+  error that caused the error path to be taken.
+
+
+2  /RRN
+
+  /RRN=record-number
+
+  The file pointer is positioned to the specified record before reading.
+
+  Allows to perform random access to fixed record length files.
+   
+  The record length must be given at the OPEN command.
+
+
+2  Examples
+
+  1.  $ OPEN IN NAMES.DAT
+      $ LOOP:
+      $ READ/END_OF_FILE=ENDIT IN NAME
+      .
+      .
+      .
+      $ GOTO LOOP
+      $ ENDIT:
+      $ CLOSE IN
+  The  OPEN  command opens the file NAMES.DAT for input and assigns it
+  the logical name of  IN.   The  READ  command reads records from the
+  file IN and places the contents into  the  symbol  NAME.   The  READ
+  command  specifies  the label ENDIT to receive control when the last
+  record in the file  has  been  read.   The procedure loops until all
+  records in the file have been processed.
+
+  2.  $ OPEN/READ INPUT_FILE INVENTORY.DAT
+      $ OPEN/APPEND OUTPUT_FILE RECEIVE.DAT
+      $ READ INPUT_FILE DATA_LINE
+      $ WRITE OUTPUT_FILE DATA_LINE
+  The OPEN/READ command opens the  file INVENTORY.DAT for reading, and
+  assigns it the logical name  INPUT_FILE.   The  OPEN/APPEND  command
+  opens  the  file  RECEIVE.DAT in the current default directory.  The
+  READ command requests data  from  the file INVENTORY.DAT.  The WRITE
+  command writes the value of the symbol DATA_LINE to the end  of  the
+  local file RECEIVE.DAT.
+
+

@@ -1,0 +1,35 @@
+V 4.07
+Bug fix in F$CVTIME().
+Bug fix in SHOW SYSTEM.
+
+V 4.06
+Windows 7 compatibility.
+Some bug fixes.
+Added Linux process and device info.
+
+V 4.03 (windows release only)
+bug fix
+    Clear screen bug (scrolled consoles not fully cleared.)
+   
+    
+V 4.02 (windows release only)
+new lexical functions
+    F$UNIQUE
+    F$CUNITS
+    F$MATCH_WILD
+    
+new qualifier in CLOSE command:
+    CLOSE /DISPOSITION=DELETE
+
+bug fix
+    OPEN /WRITE LOGNAME PHYSNAME
+    Open/Write of a file name without extension creates 
+    a file with the default extension '.DAT' but the logical
+    name associated with the file created did not contain
+    the extension.
+
+new SHOW PROCESS [pid]
+    SHOW PROCESS [pid] /ALL  
+    SHOW PROCESS [pid] /CONTINUOUS
+    
+new DCL$CTRLT_PID and DCL$CTRLT symbols

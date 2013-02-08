@@ -1,0 +1,1272 @@
+1  Lexicals
+
+  A set of functions that return information about  character  strings
+  and attributes of the current process.
+
+2  F$CHR
+
+  Returns  a  one-byte  string containing the character with the ASCII
+  value contained in the ascii-value parameter.
+
+  Format:
+
+      F$CHR(ascii-value)
+
+3  Return_Value
+
+  A one-byte character  string  containing  the  character whose ASCII
+  value is specified by the ascii-value parameter
+
+3  ascii-value
+
+  The ASCII value of  the  character  to  be  returned.   Specify  the
+  ascii-value as an integer expression in the range 0..255.
+
+3  Example
+
+  $ ESC = F$CHR(27) 
+  $ WRITE SYS$OUTPUT ESC + "[2J" + ESC + "[H" 
+  This  example  assigns to the symbol ESC the value 27 (ASCII code of
+  the ESCAPE character then use  it  in a string expression written as
+  an ANSI escape sequence on SYS$OUTPUT to clear the screen.
+
+
+2  F$CUNITS
+
+  Converts a number from one specified unit of measure to another. 
+
+  Format
+
+      F$CUNITS (number [,from-units, to-units])
+
+3  Return Value
+
+  A number representing the converted value.
+
+3  Arguments
+
+    number
+    Specifies a 32-bit (or smaller) number to convert.
+
+    from-units
+    Specifies the unit of measure from which to convert. Currently, it
+    is optional to specify this argument, because the only supported option
+    for this field is blocks.
+
+    to-units
+    Specifies the unit of to which to convert. Currently, it is optional
+    to specify this argument, because the only supported option for this
+    field is bytes.
+
+3  Example
+
+    $ WRITE SYS$OUTPUT F$CUNITS(554778, "BLOCKS", "BYTES")
+    270.88MB
+
+    This example converts 554778 blocks to the equivalent in bytes. The
+    result is 270.88 MB.
+
+2  F$CVSI
+
+  Converts the specified bits in the specified character string  to  a
+  signed number.
+
+  Format
+
+      F$CVSI(start-bit,number-of-bits,string)
+
+3  Return_Value
+
+  The  integer  equivalent  of the extracted bit field, converted as a
+  signed value.
+
+3  start-bit
+
+  Specifies the offset of the first bit to be extracted. The low-order
+  (rightmost) bit of a string is position number 0 for determining the
+  offset.  Specify the offset as an integer expression. If you specify
+  an expression with a negative  value,  or  with a value that exceeds
+  the number of bits in the string, then  DCL  displays  the  INVRANGE
+  error message.
+
+3  number-of-bit
+
+  Specifies  the  length of the bit string to be extracted, which must
+  be less than or equal to the  number  of bits in the string.  If you
+  specify an expression with a negative value, or with a value that is
+  invalid when added to the bit position offset, then DCL displays the
+  INVRANGE error message.
+
+3  string
+
+  Specifies the string from which the  bits  are  taken.  Specify  the
+  string as a character string expression.
+
+3  Example
+
+  $ A = "++++" 
+  $ SHOW SYMBOL A A = "++++" 
+  $ X = F$CVSI(0,4,A) 
+  $ SHOW SYMBOL X X = -5 Hex = FFFFFFFB Octal = 37777777773 
+  The F$CVSI function extracts the low-order 4 bits from the symbol A;
+  the  low-order  4  bits  contain  the  binary  representation of the
+  hexadecimal value B. These bits are converted, as a signed value, to
+  an integer. The converted value, -5, is assigned to the symbol X.
+
+2  F$CVTIME
+
+  Converts an absolute or a combination time string to a string of the
+  form "yyyy-mm-dd hh:mm:ss.cc". The F$CVTIME function can also return
+  information about an absolute, combination, or delta time string.
+
+  Format:
+
+      F$CVTIME([input_time] [,output_time] [,field])
+
+3  Return_Value
+
+  A character string containing the requested information.
+
+3  Input_time
+
+  The time string  for  which  information  is  requested. Specify the
+  input time string as a character string expression. You can  specify
+  the  input time string as an absolute, combination or delta time. If
+  you omit the time argument  or  if  you  specify  the time as a null
+  string, the current date and time, in absolute time format, is used.
+
+3  Output_time
+
+  The time format for the  information  you want returned. Specify the
+  output item argument as a character string expression  that  equates
+  to  one of the following strings: ABSOLUTE The requested information
+  should   be   returned   in   absolute   time   format  "dd-mmm-yyyy
+  hh:mm:ss.cc".  COMPARISON  The  requested  information   should   be
+  returned   in   the  form  "yyyy-mm-dd  hh:mm:ss.cc".  ABSOLUTE  The
+  requested information should  be  returned  in absolute time format.
+  COMPARISON The requested information should be returned in the  form
+  "yyyy-mm-dd  hh:mm:ss.cc". If you omit the output time argument, the
+  default is COMPARISON.
+
+3  Field
+
+  The type of information to be returned. The information is  returned
+  in  the  time  format specified by the output time argument. Specify
+  the field argument as  a  character string expression that evaluates
+  to one of the following strings: DATE The date  field  is  returned.
+  DATETIME  The  entire  date and time string is returned. DAY The day
+  field is returned. HOUR  The  hour  field is returned. HUNDREDTH The
+  hundredth of a second field is returned. MINUTE The minute field  is
+  returned.  MONTH  The  month  field  is returned. You cannot specify
+  MONTH if you also specify  a  delta  input time and the DELTA output
+  time argument. SECOND The second field is returned.  TIME  The  time
+  field  is  returned.  WEEKDAY  The weekday that corresponds with the
+  input time argument is returned.  You  cannot specify WEEKDAY if you
+  also specify a delta input time and the DELTA output time  argument.
+  When  the weekday is returned, the first letter is in uppercase, and
+  the following letters  are  in  lowercase.  YEAR  The  year field is
+  returned. You cannot specify YEAR if you also specify a delta  input
+  time  and  the  DELTA  output time argument. If you do not specify a
+  field argument, the default is DATETIME.
+
+3  Examples
+
+  1.  $ TIME = F$TIME() 
+      $ SHOW SYMBOL TIME TIME = "15-APR-1989 10:56:23.10" 
+      $ TIME = F$CVTIME(TIME) 
+      $ SHOW SYMBOL TIME TIME = "1989-04-15 10:56:23.10" 
+  This example uses the F$TIME function to return the system time as a
+  character string, and to assign the time to the  symbol  TIME.  Then
+  the  F$CVTIME  function  is  used  to  convert the system time to an
+  alternate time format. Note that you  do not need to place quotation
+  marks around the argument TIME because it is a symbol.  Symbols  are
+  automatically  evaluated when they are used as arguments for lexical
+  functions. You can use  the  resultant  string  to compare two dates
+  (using .LTS. and .GTS. operators). For example, you can use F$CVTIME
+  to convert two time strings and store the  results  in  the  symbols
+  TIME_1  and  TIME_2. You can compare the two values, and branch to a
+  label, based on
+  the results as shown below: 
+  $ IF TIME_1 .LTS. TIME_2 THEN GOTO FIRST 
+  2.  $ NEXT = F$CVTIME("TOMORROW",,"WEEKDAY")
+      $ SHOW SYMBOL NEXT NEXT = "Tuesday"
+  In this example, the  F$CVTIME  returns the weekday that corresponds
+  to the absolute  time  keyword  "TOMORROW".  You  must  enclose  the
+  arguments  "TOMORROW"  and "WEEKDAY" in quotation marks because they
+  are character string expressions. Also,  you must include a comma as
+  a placeholder for the output time argument that is omitted.
+
+2  F$CVUI
+
+  Converts the specified bits in  the specified character string to an
+  unsigned number.
+
+  Format
+
+      F$CVUI(start-bit,number-of-bits,string)
+
+3  Return_Value
+
+  The integer equivalent of the extracted bit field, converted  as  an
+  unsigned value.
+
+3  start-bit
+  
+  Specifies the offset of the first bit to be extracted. The low-order
+  (rightmost) bit of a string is position number 0 for determining the
+  offset.  Specify the offset as an integer expression. If you specify
+  an expression with a negative  value,  or  with a value that exceeds
+  the number of bits in the string, then  DCL  displays  the  INVRANGE
+  error message.
+
+3  number-of-bit
+  
+  Specifies the length of the bit string to be extracted,  which  must
+  be  less  than  or equal to the number of bits in the string. If you
+  specify an expression with a negative value, or with a value that is
+  invalid when added to the bit position offset, then DCL displays the
+  INVRANGE error message.
+
+3  string
+
+  Specifies the string  from  which  the  bits  are taken. Specify the
+  string as a character string expression.
+
+3  Example
+
+ $ A = "++++" 
+  $ SHOW SYMBOL A A = "++++" 
+  $ X = F$CVUI(0,4,A) 
+  $ SHOW SYMBOL X X = 11 Hex = 0000000B Octal = 00000000013 
+  The F$CVUI function extracts the low-order 4 bits from the symbol A;
+  the  low-order  4  bits  contain  the  binary  representation of the
+  hexadecimal value B. These bits are converted, as an unsigned value,
+  to an integer. The converted value, 11, is assigned to the symbol X.
+
+
+2  F$DIRECTORY
+
+  Returns the current default directory name string.  The  F$DIRECTORY
+  function has no arguments but must be followed by parentheses.
+
+  Format:
+
+      F$DIRECTORY()
+
+3  Return_Value
+
+  A character string for the current default directory name, including
+  square brackets ([]). If you use the SET DEFAULT command and specify
+  angle  brackets(&lt;&gt;)   in   a   directory   specification,  the
+  F$DIRECTORY function returns angle brackets in the directory string.
+
+3  Example
+
+  1.  $ SAVE_DIR = F$DIRECTORY() 
+      $ SET DEFAULT [MALCOLM.TESTFILES] 
+      . . . 
+      $ SET DEFAULT 'SAVE_DIR' 
+  This example shows an excerpt from a command procedure that uses the
+  F$DIRECTORY  function to save the current default directory setting.
+  The assignment statement equates the  symbol SAVE_DIR to the current
+  directory. Then the SET DEFAULT command establishes  a  new  default
+  directory.  Later,  the  symbol  SAVE_DIR is used in the SET DEFAULT
+  command that restores the original default directory.
+
+2  F$DOSVAR
+
+  Gets the value of a DOS environment variable. 
+
+  Format: 
+
+      F$DOSVAR(var-name) 
+3  Return_Value
+
+  Value of the DOS environment variable.
+
+3  var-name
+
+  The name of a DOS  environment  variable.  Specify  the  name  as  a
+  character string expression.
+
+3  Example
+
+  $ TMPDIR := F$DOSVAR("TEMP") 
+  $ SET DEFAULT TMPDIR 
+  $ SHOW DEFAULT C:\TEMP\ 
+  This  example assign the value of the environment variable TEMP to a
+  symbol named TMPDIR  and  then  set  the  default  directory to that
+  value.
+
+2  F$EDIT
+
+  Edits a string expression based on the edits specified in the edit-list. 
+
+  Format: 
+      
+      F$EDIT(string, edit-keyword) 
+
+3  Return_Value
+
+  A character string containing the specified edits.
+
+3  string
+
+  A string to be edited. Specify the string argument  as  a  character
+  string expression.
+
+3  Edit_keyword
+
+  A keyword that specify the types of edits to be made to the  string.
+  You  cannot  abbreviate  these  keywords.   Specify the edit_keyword
+  argument as a character string expression.
+  COLLAPSE    Removes all spaces and tabs from the string. 
+  COMPRESS    Replaces multiple spaces and tabs with a single space. 
+  LOWERCASE   Makes the string lower case. 
+  TRIM        Removes leading and trailing spaces and tabs from the string. 
+  UNCOMMENT   Removes comments from the string. 
+  UPCASE      Makes the string upper case. 
+  Edits are not applied to quoted sections of strings. Therefore, if a
+  string contains quotation marks, the characters within the quotation
+  marks are not affected by the edits specified in the edit list.
+
+3  Examples
+
+  1.  $ LINE = " THIS LINE CONTAINS A "" QUOTED ""  WORD" 
+      $ SHOW SYMBOL LINE LINE = " THIS LINE CONTAINS A " QUOTED "  WORD" 
+      $ NEW_LINE = F$EDIT(LINE, "COMPRESS, TRIM") 
+      $ SHOW SYMBOL NEW_LINE NEW_LINE = "THIS LINE CONTAINS A " QUOTED "  WORD" 
+  This example uses the F$EDIT function to compress and trim a  string
+  by  replacing  multiple  blanks with a single blank, and by removing
+  leading and  trailing  blanks.  The  string  LINE contains quotation
+  marks around the word QUOTED.  (To  enter  quotation  marks  into  a
+  character   string,   use   double   quotations  in  the  assignment
+  statement.) Note that  the  F$EDIT  function  does  not compress the
+  spaces in the quoted section of the string;  therefore,  the  spaces
+  are retained around the word QUOTED.
+  2.  $ LOOP: 
+      $ READ/END_OF_FILE = DONE INPUT_FILE RECORD 
+      $ RECORD = F$EDIT(RECORD, "TRIM, UPCASE") 
+      $ WRITE OUTPUT_FILE RECORD $ GOTO LOOP 
+      . . . 
+  This  example sets up a loop to read records from a file, edit them,
+  and write them to an  output  file.  The edited records have leading
+  and trailing blanks removed, and are converted to uppercase.
+
+
+2  F$ELEMENT
+
+  Extracts an  element  from  a  string  in  which  the  elements  are
+  separated by a specified delimiter.
+
+  Format:
+
+      F$ELEMENT(element-number, delimiter, string) 
+
+3 Return_Value
+
+  A character string containing the specified element.
+
+3 element-number
+
+  The number of the element to be  retrieved.  Element  numbers  start
+  with  zero.  Specify  the  element-number  argument  as  an  integer
+  expression.  If the element-number exceeds the number of elements in
+  the string, the delimiter is returned.
+
+3 delimiter
+
+  The delimiter used  to  separate  the  elements  in  the string. The
+  delimiter can be only one character long. Specify the delimiter as a
+  character string expression.
+
+3 string
+
+  A string containing a delimited list of elements. Specify the string
+  as a character string expression.
+
+3  Example
+
+  1.  $ DAY_LIST = "MON/TUE/WED/THU/FRI/SAT/SUN" 
+      $ INQUIRE DAY "ENTER DAY (MON TUE WED THU FRI SAT SUN)" 
+      $ NUM = 0 $ LOOP: 
+      $ LABEL = F$ELEMENT(NUM,"/",DAY_LIST) 
+      $ IF LABEL .EQS. "/" THEN GOTO ERROR 
+      $ IF DAY .EQS. LABEL THEN GOTO 'LABEL' $ NUM = NUM +1 
+      $ GOTO LOOP $ $ MON: . 
+  This  example  sets  up  a  loop  to test an input value against the
+  elements in a list of values.  If  the  value for DAY matches one of
+  the elements in DAY_LIST, control is  passed  to  the  corresponding
+  label.  If  the value returned by the F$ELEMENT function matches the
+  delimiter, then the value DAY  was  not present in the DAY_LIST, and
+  control is passed to the label ERROR.
+
+2  F$ENVIRONMENT
+
+  Obtains information on aspects of the DCL command environment. 
+
+  Format: 
+
+      F$ENVIRONMENT(item) 
+
+3  Return_Value
+
+  Information that corresponds to the specified item. The return value
+  can be either an integer or a character  string,  depending  on  the
+  specified item.
+
+3  item
+
+  A keyword that specifies the type of information to be returned. You
+  cannot  abbreviate  keywords for the F$ENVIRONMENT lexical function.
+  Specify the item argument as  a character string expression. DEFAULT
+  Returns  the  current  default  device  and  directory  name.   This
+  information  is  returned as a character string; the returned string
+  is the same  as  the  output  from  the  SHOW DEFAULT command. DEPTH
+  Returns the current command procedure depth, as an integer.
+  INTERACTIVE      Returns either the character string "TRUE" or "FALSE" to
+                   indicate whether the process is interactive.
+  MAX_DEPTH        Returns an integer specifying the maximum allowable
+                   command procedure depth.
+  PROCEDURE        Returns the file specification for the command procedure
+                   from which the F$ENVIRONMENT("PROCEDURE") function is issued.
+                   The file specification is returned as a character string. 
+  PROMPT           Returns a character string containing the current prompt string. 
+  SYMBOL_SCOPE     Returns the character string "[NO]LOCAL, [NO]GLOBAL" to
+                   indicate the current symbol scoping state. 
+  VERIFY_IMAGE     Returns either the character string "TRUE" or "FALSE"
+                   to indicate whether the SET VERIFY=IMAGE command is in effect. 
+  VERIFY_PROCEDURE Returns either the character string "TRUE" or "FALSE"
+                   to indicate whether the SET VERIFY=PROCEDURE command is in effect. 
+
+3  Examples
+
+  1.  $ SAVE_PROMPT = F$ENVIRONMENT("PROMPT") 
+      $ SET PROMPT= "-&gt;" 
+      . . . -&gt; SET PROMPT='SAVE_PROMPT' 
+  This example uses  the  F$ENVIRONMENT  function  to save the current
+  prompt setting before changing  the  setting.  At  the  end  of  the
+  command  procedure,  the  original  prompt  setting is restored. The
+  apostrophes surrounding  the  symbol  SAVE_PROMPT  indicate that the
+  value for the symbol should be substituted.
+
+  2.  $ MAX = F$ENVIRONMENT("MAX_DEPTH") 
+      $ SHOW SYMBOL MAX MAX = 8 
+  This example  uses  the  F$ENVIRONMENT  function  to  determine  the
+  maximum depth allowable within command procedures.
+
+2  F$EXTRACT
+
+  Extracts a substring from a character string expression.
+
+  Format:
+
+      F$EXTRACT(offset,length,string)
+
+3  Return_Value
+
+  A character string containing the substring that is delimited by the
+  offset and length arguments.
+
+3  offset
+
+  The position, relative to  the  beginning  of the string, that marks
+  the beginning of the substring you  want  to  extract.  Specify  the
+  offset  as an integer expression that is greater than or equal to 0.
+  The offset 0 indicates the first character in the string.
+
+3  length
+
+  The number of characters you want  to extract. Specify the length as
+  an integer expression that is greater than or equal to 0.
+
+3  string
+
+  The string from which the substring is to be extracted. Specify  the
+  string as a character string expression.
+
+3  Examples
+
+  1.  $ NAME = "JOE SMITH" 
+      $ FIRST = F$EXTRACT(0,3,NAME) 
+      $ SHOW SYMBOL FIRST FIRST = "JOE" 
+  This  portion  of a command procedure uses the F$EXTRACT function to
+  extract  the  first  three  characters  from  the  character  string
+  assigned to the symbol  NAME.  The  offset  and length arguments are
+  integers, and the string argument is a symbol. You do  not  need  to
+  use  quotations  around  integers  or  symbols when they are used as
+  arguments for lexical functions.
+
+  2.  $ P1 = "MYFILE.DAT" 
+      $ FILENAME = F$EXTRACT(0,F$LOCATE(".",P1),P1) 
+  This portion of a command procedure  shows how to locate a character
+  within a string, and how to  extract  a  substring  ending  at  that
+  location.  The  lexical  function  F$LOCATE  gives the numeric value
+  representing the offset position of a period in the character string
+  value of P1. (The  offset  position  of  the  period is equal to the
+  length of the substring before the period.) This  F$LOCATE  function
+  is  used  as  an  argument  in the F$EXTRACT function to specify the
+  number of characters to extract  from  the string. If a procedure is
+  invoked with the parameter MYFILE.DAT, these  statements  result  in
+  the  symbol  FILENAME  being  given  the value MYFILE. Note that the
+  F$LOCATE  function  in  the  above  example  assumes  that  the file
+  specification  does  not  contain  a  node  name  or   a   directory
+  specification containing a subdirectory name.
+
+  3.  $ IF F$EXTRACT(12,2,F$TIME()) .GES. "12" THEN GOTO AFTERNOON 
+      $ MORNING:
+      $ WRITE SYS$OUTPUT "Good morning!" 
+      $ EXIT 
+      $ AFTERNOON: 
+      $ WRITE SYS$OUTPUT "Good afternoon!" 
+      $ EXIT 
+  This  example  shows  a procedure that displays a different message,
+  depending on whether the  current  time  is morning or afternoon. It
+  first obtains the current time of day by using the F$TIME  function.
+  The  F$TIME function returns a character string, which is the string
+  argument  for  the  F$EXTRACT   function.  The  F$TIME  function  is
+  automatically evaluated when it is used as an argument,  so  you  do
+  not  need  to  use  quotation  marks.  Next,  the F$EXTRACT function
+  extracts the hours from the date and time string returned by F$TIME.
+  The string  returned  by  F$TIME  always  contains  the  hours field
+  beginning at an offset of  12  characters  from  the  start  of  the
+  string.  The  F$EXTRACT  function  extracts  two characters from the
+  string, beginning at  this  offset,  and  compares  the string value
+  extracted with the string value 12. If the comparison is true,  then
+  the  procedure  writes "Good afternoon!". Otherwise, it writes "Good
+  morning!". Note that  you  can  also  use  the  F$CVTIME function to
+  extract the hour field from a time  specification.  This  method  is
+  easier than the one shown in the above example.
+
+
+2  F$FAO
+
+  Converts  character  and  numeric  input to ASCII character strings.
+  (FAO stands for  formatted  ASCII  output.) By specifying formatting
+  instructions, you can use the  F$FAO  function  to  convert  integer
+  values  to  character  strings,  to insert carriage returns and form
+  feeds, to insert text, and so on.
+
+  Format
+
+      F$FAO(control-string[,argument[,...]])
+
+3  Return_Value
+
+  A character string  containing  formatted  ASCII output. This output
+  string is created from the fixed text  and  FAO  directives  in  the
+  control string.
+
+3  control-string
+
+  Specifies  the  fixed  text of the output string, consisting of text
+  and any number of  FAO  directives.  The  control  string may be any
+  length. Specify the control string as a character string expression.
+  The F$FAO function uses FAO directives to  modify  or  insert  ASCII
+  data into the fixed text in the control string.
+
+  Here is a summary of the FAO directives you can specify in a control string.
+
+
+  
+    Directive     ArgumentType    Description
+                                  Character string insertion: 
+    !AS           String          Inserts a character string as is.
+                                  Zero-filled numeric conversion: 
+    !OB           Integer         Converts a byte to octal notation
+    !OW           Integer         Converts a word to octal notation.
+    !OL           Integer         Converts a longword to octal notation.
+    !XB           Integer         Converts a byte to hexadecimal notation.
+    !XW           Integer         Converts a word to hexadecimal notation.
+    !XL           Integer         Converts a longword to hexadecimal notation.
+    !ZB           Integer         Converts a byte to decimal notation.
+    !ZW           Integer         Converts a word to decimal notation.
+    !ZL           Integer         Converts a longword to decimal notation.
+                                  Blank-filled numeric conversion:
+    !UB           Integer         Converts a byte to decimal notation
+                                  without adjusting for negative numbers.
+    !UW           Integer         Converts a word to decimal notation
+                                  without adjusting for negative numbers.
+    !UL           Integer         Converts a longword to decimal notation
+                                  without adjusting for negative numbers. 
+    !SB           Integer         Converts a byte to decimal notation
+                                  with negative numbers converted properly.
+    !SW           Integer         Converts a word to decimal notation
+                                  with negative numbers converted properly.
+    !SL           Integer         Converts a longword to decimal notation
+                                  with negative numbers converted properly. 
+                                  Special formatting: 
+    !/            None            Inserts a carriage return and a line feed.
+    !_            None            Inserts a tab. 
+    !^            None            Inserts a form feed.
+    !!            None            Inserts an exclamation point (!). 
+    !%T           Integer         Inserts the current time.
+    !%D           Integer         Inserts the current date/time.
+                                  Argument interpretation: 
+    !-            None            Reuses the last argument. 
+    !+            None            Skips the next argument
+
+3  argument[,...]
+
+  Specifies from 1 to 15 arguments required by the FAO directives used
+  in the control string. Specify the arguments as integer or character
+  string   expressions.   FAO  directives  may  require  one  or  more
+  arguments. The order of  the  arguments must correspond exactly with
+  the order of the directives in the control string. In most cases, an
+  error message is not displayed if you misplace an argument. If there
+  are not enough arguments listed, F$FAO continues  reading  past  the
+  end of an argument list. Therefore, always be sure to include enough
+  arguments  to  satisfy  the  requirements of all the directives in a
+  control  string.  If  you  specify  an  invalid  parameter  for  any
+  directive, you may see  unexpected  errors,  which indicate that the
+  command did not succeed. (These errors are  passed  through  to  you
+  from the $FAO system service.)
+
+3  Examples 
+
+  1.  $ COUNT = 57 
+      $ REPORT = F$FAO("NUMBER OF FORMS = !SL",COUNT) 
+      $ SHOW SYMBOL REPORT 
+      $ REPORT = "NUMBER OF FORMS = 57" 
+  In  this  command  procedure,  the  FAO  directive  !SL is used in a
+  control string to convert the number  equated to the symbol COUNT to
+  a character string.  The  converted  string  is  inserted  into  the
+  control  string. Note that COUNT is assigned an integer value of 57.
+  The F$FAO function returns the ASCII string, "NUMBER OF FORMS = 57",
+  and assigns the string to the symbol REPORT.
+
+  2.  $ A = "ERR" 
+      $ B = "IS" 
+      $ C = "HUM" 
+      $ D = "AN" 
+      $ PHRASE = F$FAO("TO !3(AS)",A,B,C+D) 
+      $ SHOW SYMBOL PHRASE 
+      $ PHRASE = "TO ERRISHUMAN" 
+  In this command procedure, the  !AS  directive is used to insert the
+  values assigned to the symbols A, B,  C,  and  D  into  the  control
+  string.  Because the specified repeat count for the !AS directive is
+  3, F$FAO looks for  three  arguments.  The arguments in this example
+  include  the  symbol  A  ("ERR"),  the  symbol  B  ("IS"),  and  the
+  expression C+D ("HUMAN"). Note  that  the  values  of  these  string
+  arguments are concatenated to form the string "ERRISHUMAN".
+
+  3.  $ A = "ERR" 
+      $ B = "IS" 
+      $ C = "HUMAN" 
+      $ PHRASE = F$FAO("TO !#(#AS)",3,6,A,B,C) 
+      $ SHOW SYMBOL PHRASE 
+      $ PHRASE = "TO ERR IS HUMAN " 
+  In  this  command procedure, the F$FAO function is used with the !AS
+  directive to format a  character  string.  The first number sign (#)
+  represents the repeat count given by  the  first  argument,  3.  The
+  second  number  sign  represents  the field size given by the second
+  argument, 6. The next  three  arguments  (A,B,C) provide the strings
+  that are placed into the control string each time the !AS  directive
+  is  repeated.  Each  argument  string  is output to a field having a
+  length  of  6  characters.  Because  each  string  is  less  than  6
+  characters, each  field  is  left-justified  and  padded  with blank
+  spaces. The resulting string is assigned to the symbol PHRASE.
+
+2  F$FILE_ATTRIBUTES
+
+  Returns attribute information for a specified file. 
+
+  Format: 
+
+      F$FILE_ATTRIBUTES(file-spec,item) 
+
+3  Return_Value
+
+  Either an integer or a character string, depending on the  item  you
+  request.
+
+3  file-spec
+
+  The name of the file about which you are requesting information. You
+  must  specify  the  file name as a character string expression. Only
+  one file name may be  specified.  No wildcard characters are allowed
+  in the file specification.
+
+3  item
+
+  Indicates which attribute of the file is to be  returned.  The  item
+  must  be  specified as a character string expression, and can be any
+  one of the following names:
+  ATT Returns the DOS file attributes in the form : "RHSA" 
+  DAT Returns the date and time of the last file modification. 
+  DEV Returns the device name part of the file pathname. 
+  DIR Returns the directory name part of the file pathname. 
+  EXT Returns the extension part of the file pathname. 
+  NAM Returns the file name part of the file pathname. 
+  SIZ Returns the file size in bytes.
+
+3  Examples
+
+  1.  $ FILE_SIZ = F$FILE_ATTRIBUTES("QUEST.DAT","SIZ") 
+      $ SHOW SYMBOL FILE_SIZ FILE_SIZ = 123456 
+  2.  $ FILE_ATT = F$FILE_ATTRIBUTES("QUEST.DAT","ATT") 
+      $ SHOW SYMBOL FILE_ATT FILE_ATT = "W..A" 
+
+2  F$GETDVI
+
+  Obtains information on a disk device. 
+
+  Format:
+
+      F$GETDVI(device-name,item) 
+
+3  Return_Value 
+
+  Information that corresponds to the specified item. The return value
+  can be either an  integer  or  a  character string, depending on the
+  specified item.
+
+3  device-name
+
+  A physical device name or a  logical  name  equated  to  a  physical
+  device   name.  Specify  the  device  name  as  a  character  string
+  expression.
+
+3  item
+
+  A keyword that specifies the type of information to be returned. You
+  cannot  abbreviate  keywords  for  the  F$GETDVI  lexical  function.
+  Specify the item argument as a character string expression.
+  SIZ Returns the total device size in bytes. 
+  FRE Returns the remaining free space on device in bytes. 
+  CLU Returns device cluster size in bytes.
+
+2  F$GETSYI
+
+  Obtains system informations. 
+
+  Format: 
+
+      F$GETSYI(item) 
+
+3  Return_Value
+
+  Information that corresponds to the specified item. The return value
+  can be either an  integer  or  a  character string, depending on the
+  specified item.
+
+3  item
+  
+  A keyword that specifies the type of information to be returned. You
+  cannot  abbreviate  keywords  for  the  F$GETSYI  lexical  function.
+  Specify the item argument as a character string expression.
+  CPU Returns the CPU type (8086,80286,80386, Pentium ...). 
+  FPU Returns the floating-point coprocessor type (NONE,8087,80287,80387). 
+  TOTMEM Returns the total amount of conventional memory. 
+  FREMEM Returns the amount of free conventional memory. 
+  CODEPAGE Returns the active code page.
+
+2  F$LENGTH
+
+  Returns the length of a specified string. 
+
+  Format: 
+
+      F$LENGTH(string) 
+
+3  Return_Value
+
+  An integer value for the length of the string.
+
+3  string
+
+  The character string  of  which  you  are  determining  the  length.
+  Specify the string argument as a character string expression.
+
+3  Example
+
+  1.  $ MESSAGE = F$TIME 
+      $ SHOW SYMBOL MESSAGE MESSAGE = "11-OCT-1991 22:40:53:00" 
+      $ STRING_LENGTH = F$LENGTH(MESSAGE) 
+      $ SHOW SYMBOL STRING_LENGTH STRING_LENGTH = 23 
+  The  F$LENGTH  function  is  then  used  to return the length of the
+  character string assigned to the symbol  MESSAGE. You do not need to
+  use quotation marks when you use the symbol MESSAGE as  an  argument
+  for  the  F$LENGTH  function.  (Quotation  marks are not used around
+  symbols in  character  string  expressions.)  The  F$LENGTH function
+  returns the length of the character string and  assigns  it  to  the
+  symbol  STRING_LENGTH.  At  the  end  of  the  example,  the  symbol
+  STRING_LENGTH  has  a value equal to the number of characters in the
+  value of the symbol named MESSAGE, that is, 23.
+
+
+
+2  F$LOCATE
+
+  Locates a  character  or  character  substring  within  a string and
+  returns its offset within the string. If the character or  character
+  substring  is  not  found,  the  function  returns the length of the
+  string that was searched.
+
+  Format:
+
+      F$LOCATE(substring,string)
+
+3  Return_Value
+
+  An integer value representing the  offset of the substring argument.
+  An offset is the position of a character or a substring relative  to
+  the  beginning  of  the  string.  The first character in a string is
+  always offset position 0  from  the  beginning  of the string (which
+  always begins at the leftmost character). If the substring  argument
+  is not found, the F$LOCATE function returns an offset of 1 more than
+  the  offset  of  the  last character in the string. (This equals the
+  length of the string.)
+
+3  substring
+
+  The string of characters that you  want to locate within the string.
+  Specify the substring as a character string expression.
+
+3  string
+
+  The string in which the characters are  to  be  found.  Specify  the
+  string as a character string expression.
+
+3  Examples
+
+  1.  $ FILE_SPEC = "MYFILE.DAT;1" 
+      $ NAME_LENGTH = F$LOCATE(".",FILE_SPEC)
+  The  F$LOCATE  function  in this example returns the position of the
+  period in the string with  respect  to  the beginning of the string.
+  The period is in offset position 6, so the value 6  is  assigned  to
+  the symbol NAME_LENGTH. Note that NAME_LENGTH also equals the length
+  of  the file name portion of the file specification MYFILE.DAT, that
+  is, 6. The substring argument, the  period, is specified as a string
+  literal and is therefore enclosed in quotation marks.  The  argument
+  FILE_SPEC  is  a symbol, so it should not be placed within quotation
+  marks. It is automatically replaced  by its current value during the
+  processing of the function.
+
+  2.  $ INQUIRE TIME "Enter time" 
+      $ IF F$LOCATE(":",TIME) .EQ. F$LENGTH(TIME) THEN - GOTO NO_COLON 
+  This section of a command procedure  compares  the  results  of  the
+  F$LOCATE  and  F$LENGTH  functions  to  see  if they are equal. This
+  technique is  commonly  used  to  determine  whether  a character or
+  substring is contained in a string.  In  the  example,  the  INQUIRE
+  command  prompts for a time value and assigns the user-supplied time
+  to the symbol TIME.  The  IF  command  checks  for the presence of a
+  colon in the string entered in response to the prompt. If the  value
+  returned  by  the F$LOCATE function equals the value returned by the
+  F$LENGTH function,  the  colon  is  not  present.  You  use the .EQ.
+  operator (rather than  .EQS.)  because  the  F$LOCATE  and  F$LENGTH
+  functions  return integer values. Note that quotation marks are used
+  around the substring argument,  the  colon,  because  it is a string
+  literal. However, the symbol TIME does not require  quotation  marks
+  because it is automatically evaluated as a string expression.
+
+2  F$MATCH_WILD
+
+  Performs a wildcard matching between a candidate and a pattern
+  string. TRUE is returned if the strings match.
+
+  Format
+
+       F$MATCH_WILD (candidate, pattern)
+
+3  Arguments
+
+    candidate
+    A string to which the pattern string is compared.
+    
+    pattern
+    A string on which a wildcard match is performed comparing the
+    pattern to the candidate string. 
+
+3  Example
+
+  1.  $ write sys$output f$match_wild ("This is a candidate","*c%%d*")
+      TRUE
+      $
+
+    This command performs a wildcard match between the candidate
+    candidate and pattern *c%%d* and found that the strings match.
+
+  2.  $ write sys$output f$match_wild ("This is a candidate text", "*candi*)
+      TRUE
+      $
+
+    This command checks to see if the pattern candi appears 
+    in the candidate. 
+
+2  F$MESSAGE
+
+  Returns  a  character  string containing the message text associated
+  with a specific system status code.
+
+  Format: 
+
+      F$MESSAGE(status-code) 
+
+3  Return_Value
+  
+  A character string containing  the  system message which corresponds
+  to the argument you specify.
+
+3  status-code
+
+  The status code for which you are requesting error message text. You
+  must specify the status code as an integer expression.
+
+3  Example
+
+  1.  $ ERROR_TEXT = F$MESSAGE(2) 
+      $ SHOW SYMBOL ERROR_TEXT ERROR_TEXT = "No such file or directory" 
+  This example shows how to use the F$MESSAGE  function  to  determine
+  the  message  associated  with  the  status  code  2.  The F$MESSAGE
+  function returns the message string, which is assigned to the symbol
+  ERROR_TEXT.
+
+2  F$MODE
+
+  Returns a character string showing  the  mode  in which a process is
+  executing. The  F$MODE  function  has  no  arguments,  but  must  be
+  followed by parentheses.
+
+  Format:
+
+      F$MODE()
+
+3  Return_Value
+  
+  The  string  "INTERACTIVE" for interactive processes. If the process
+  is noninteractive, the string  "BATCH"  or "OTHER" is returned. Note
+  that the return string always contains uppercase letters.
+
+3  Example
+
+  1.  $ IF F$MODE() .NES. "INTERACTIVE" THEN GOTO NON_INT_DEF 
+      $ INTDEF: ! Commands for interactive terminal sessions
+      . .
+      $ EXIT 
+      $ NON_INT_DEF: !Commands for non-interactive processes
+     . . .
+  This example shows the beginning of a login  command  file.  The  IF
+  command  compares  the  character string returned by F$MODE with the
+  character  string  INTERACTIVE;  if  they  are  not  equal,  control
+  branches  to  the  label   NON_INT_DEF.  Otherwise,  the  statements
+  following the label INTDEF are  executed  and  the  procedure  exits
+  before the statements at NON_INT_DEF. Therefore, this login.com file
+  has  two  sets  of initialization commands: one for interactive mode
+  and one for noninteractive mode (including batch and network jobs).
+
+2  F$NODE
+
+  Returns the NETBIOS name of  the local computer. The F$NODE function
+  has no arguments, but must be followed by parentheses.
+
+  Format:
+      
+      F$NODE()
+
+3  Return_Value
+
+  A character string containing the NETBIOS name of the local computer
+
+3  Example
+
+  1.  $ NAME = F$NODE() 
+      $ SHOW SYMBOL NODE 
+      NODE = PROTON
+  In this example the F$NODE function returns the local computer  name
+  and assigns it to the symbol NAME.
+
+
+2  F$SEARCH
+
+  Invokes the FINDFIRST/FINDNEXT Windows service to search a directory
+  file and return the full file specification for a file you name.
+
+  Format:
+
+      F$SEARCH(file-spec[,stream-id]) 
+
+3  Return_Value
+
+  A  character  string  containing the expanded file specification for
+  the file-spec argument. If the  F$SEARCH  function does not find the
+  file in the directory, the function returns a null ("") string.
+
+3  file-spec
+
+  The file specification to be searched  for.  You  must  specify  the
+  file-spec argument as a character string expression. If you omit the
+  device  or  directory names, the F$SEARCH function supplies defaults
+  from your current default disk  and directory. The F$SEARCH function
+  does not supply defaults for a  file  name  or  type.  You  can  use
+  wildcards in the file-spec argument.
+
+3  stream-id
+
+  A  search  stream  identification  number. Specify the search stream
+  identification number as a positive  integer expression. If you omit
+  the stream-id argument, the F$SEARCH function  assumes  an  implicit
+  single  search  stream.  That  is,  the F$SEARCH function will start
+  searching at the  beginning  of  the  directory  file  each time you
+  specify a different file-spec argument. Search streams  are  limited
+  to 8.
+
+3  Examples
+
+  1.  $ START: 
+      $ FILE = F$SEARCH("BIN\*.EXE") 
+      $   IF FILE .EQS. "" THEN EXIT 
+      $ SHOW SYMBOL FILE 
+      $ GOTO START 
+  This  command procedure displays the file-specs of all .EXE files in
+  the  BIN  directory.  The  file-spec  argument  SYS$SYSTEM:*.EXE  is
+  surrounded by  quotation  marks  because  it  is  a character string
+  expression. Because no stream-id argument is specified, the F$SEARCH
+  uses a single search stream. Each subsequent F$SEARCH function  uses
+  the same file-spec argument to return the next file specification of
+  an .EXE file from BIN\. After each .EXE file has been displayed, the
+  F$SEARCH function returns a null string and the procedure exits.
+
+  2.  $ START: 
+      $ COM = F$SEARCH ("*.COM",1) 
+      $ DAT = F$SEARCH ("*.DAT",2) 
+      $ SHOW SYMBOL COM 
+      $ SHOW SYMBOL DAT 
+      $ IF (COM.EQS. "") .AND. (DAT.EQS. "") THEN EXIT 
+      $ GOTO START 
+  This  command  procedure searches the default disk and directory for
+  both COM and DAT files.  Notice  that the stream-id is specified for
+  each F$SEARCH function so  that  the  context  for  each  search  is
+  maintained.  The  first  F$SEARCH function starts searching from the
+  top of the directory file for  a  file  with  a type of COM. When it
+  finds a COM file, a pointer is set to maintain the  search  context.
+  When  the F$SEARCH function is used the second time, it again starts
+  searching from the top of the directory  file for a file with a type
+  of DAT. When the procedure  loops  back  to  the  label  START,  the
+  stream-id  argument allows each F$SEARCH function to start searching
+  in the correct place in  the  directory  file. After all versions of
+  COM and DAT files are returned, the procedure exits.
+
+
+2  F$TIME
+
+  Returns the current date and time string. The F$TIME function has no
+  arguments, but must be followed by parentheses.
+
+  Format:
+
+      F$TIME()
+
+3  Return_Value
+
+  A character  string  containing  the  current  date  and  time.  The
+  returned  string  has  the  following  fixed,  23-character  format:
+  dd-mmm-yyyy hh:mm:ss.cc
+
+3  Example 
+
+  1.  $ OPEN/WRITE OUTFILE DATA.DAT 
+      $ TIME_STAMP = F$TIME() 
+      $ WRITE OUTFILE TIME_STAMP 
+  This  example  shows  how to use the F$TIME function to time-stamp a
+  file that  you  create  from  a  command  procedure.  OUTFILE is the
+  logical name for the file DATA.DAT, which is opened for writing. The
+  F$TIME function returns  the  current  date  and  time  string,  and
+  assigns  this  string  to  the  symbol TIME_STAMP. The WRITE command
+  writes the date and time string to OUTFILE.
+
+2  F$TRNLNM
+
+  Translates a logical name  and  returns the equivalence name string,
+  or the requested attributes of the logical name. The translation  is
+  not  iterative;  the  equivalence string is not checked to determine
+  whether it is a logical name.
+
+  Format:
+
+      F$TRNLNM(logical-name)
+
+3  Return_Value
+
+  The equivalence name or attribute of the specified logical name. The
+  return value can    be a character  string  or an integer, depending on
+  the arguments you specify with the F$TRNLNM function.  The  F$TRNLNM
+  function returns a null string if no match is found.
+
+3  logical-name
+
+  The logical name to be translated. You must specify the logical-name
+  argument as a string expression.
+
+3  Example
+
+  1.  $ SAVE_DIR = F$TRNLNM("SYS$DISK")+F$DIRECTORY()
+      . .
+      $ SET DEFAULT 'SAVE_DIR'
+  The  assignment  statement  concatenates  the values returned by the
+  F$DIRECTORY and F$TRNLNM functions, and assigns the resulting string
+  to the symbol  SAVE_DIR.  The  symbol  SAVE_DIR  consists  of a full
+  device and directory name string. The argument SYS$DISK is  enclosed
+  in  quotation  marks  because it is a character string. (The command
+  interpreter  treats  all   arguments   that  begin  with  alphabetic
+  characters as symbols or lexical functions, unless the arguments are
+  enclosed within quotation marks.) None of the optional arguments are
+  specified, so the F$TRNLNM function uses the defaults. At the end of
+  the command procedure, the original default directory is reset. When
+  you reset the directory,  you  must  place  apostrophes  around  the
+  symbol SAVE_DIR to force symbol substitution.
+
+
+2  F$TYPE
+
+  Determines the data type of a symbol.
+
+  Format:
+
+      F$TYPE(symbol-name)
+
+3  Return_Value
+
+  The  string  "INTEGER"  is  returned  if the symbol is equated to an
+  integer, or if the symbol  is  equated  to a string whose characters
+  form a valid integer. The string "STRING" is returned if the  symbol
+  is  equated  to  a  character  string whose characters do not form a
+  valid  integer.  If  the  symbol  is  undefined,  a  null  string is
+  returned.
+
+3  symbol-name
+
+  The name of symbol that is evaluated.
+
+3  Examples
+
+  1.  $ NUM = "52" 
+      $ TYPE = F$TYPE(NUM) 
+      $ SHOW SYMBOL TYPE TYPE = "INTEGER" 
+  This example uses the F$TYPE function to determine the data type  of
+  the symbol NUM. NUM is equated to the character string "52". Because
+  the  characters  in  the  string  form  a  valid integer, the F$TYPE
+  function returns the string "INTEGER".
+
+  2.  $ NUM = 52 
+      $ TYPE = F$TYPE(NUM) 
+      $ SHOW SYMBOL TYPE TYPE = "INTEGER" 
+  In this example, the symbol  NUM  is  equated to the integer 52. The
+  F$TYPE function shows that the symbol has an integer data type.
+
+  3.  $ CHAR = "FIVE" 
+      $ TYPE = F$TYPE(CHAR) 
+      $ SHOW SYMBOL TYPE TYPE = "STRING" 
+  In this example, the symbol CHAR is equated to the character  string
+  "FIVE".  Because  the  characters in this string do not form a valid
+  integer, the F$TYPE  function  shows  that  the  symbol has a string
+  value.
+
+2 F$UNIQUE
+
+  Generates a string that is suitable to be a file name and is
+  guaranteed to be unique across the cluster. Unique file names can be
+  useful when creating temporary files.
+
+  The F$UNIQUE function has no arguments, but must be followed by a
+  blank pair of parentheses.
+
+  Format
+
+      F$UNIQUE()
+
+3  Return Value
+
+  A character string containing the unique string.
+
+3  Examples
+
+  1.  $ WRITE SYS$OUTPUT F$UNIQUE()
+      414853555241159711D7DF797CCF573F
+      $
+      $ WRITE SYS$OUTPUT F$UNIQUE()
+      414853555241509811D7DF797E3F2777
+      $
+      
+  This example shows how a unique string is returned on subsequent WRITE
+  commands.
+
+  2.  $ OPEN/WRITE TEMP_FILE 'F$UNIQUE()
+      $ DIRECTORY
+      Directory WORK1:[TEST]
+      594B53554C421C9C11D75463D61F58B7.DAT;1
+      Total of 1 file.
+      $
+      $ CLOSE/DISPOSITION=DELETE TEMP_FILE
+      $ DIRECTORY
+      %DIRECT-W-NOFILES, no files found
+      $
+      
+
+  The first command creates a temporary file and gives it a unique name,
+  which is displayed by the subsequent DIRECTORY command. After the file
+  is later closed and deleted, it no longer shows up in the directory.
+
+2  F$USER
+
+  Returns the current user identification code (UIC), in named format.
+  The F$USER function has  no  arguments,  but  must  be  followed  by
+  parentheses.
+
+  Format:
+
+      F$USER()
+
+3  Return_Value
+
+  A  character  string  containing  the current user identification as
+  given by the operating system or as specified in the DCL.INI file.
+
+3  Example
+
+  1.  $ UIC = F$USER() 
+      $ SHOW SYMBOL UIC UIC = Joe User 
+  In  this  example  the  F$USER  function  returns  the  current user
+  identification code and assigns it to the symbol UIC.
+
+
+2  F$VERIFY
+
+  Returns  an  integer  value   indicating   whether   the   procedure
+  verification setting is currently on or off. If used with arguments,
+  the  F$VERIFY function can turn the procedure and image verification
+  settings on or  off.  You  must  include  the  parentheses after the
+  F$VERIFY function, whether or not you specify arguments.
+
+  Format:
+
+      F$VERIFY([procedure-value] [,image-value])
+
+3  Return_Value
+
+  The integer 0 if the procedure verification setting is off,  or  the
+  integer 1 if the procedure verification setting is on. 
+
+3  procedure-value
+
+  An   integer  expression  with  a  value  of  0  to  turn  procedure
+  verification off, or 1 to turn procedure verification on.
+
+3  image-value
+
+  An integer expression with a value of 0 to turn image verification
+  off, or 1 to turn image verification on. 
+
+3  Example
+
+  1.  $ VERIFY = F$VERIFY(0) 
+      . . . 
+      $ IF VERIFY .EQ. 1 THEN SET VERIFY 
+  This example shows an excerpt from a command procedure that uses the
+  F$VERIFY function to save the current procedure verification setting
+  and to turn both procedure and image verification off. At the end of
+  the command procedure, if  procedure verification was originally on,
+  both the procedure and image verification are turned on.
+
+
+

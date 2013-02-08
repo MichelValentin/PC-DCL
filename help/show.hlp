@@ -1,0 +1,358 @@
+1  SHOW
+
+  Displays information about the  current  status  of the process, the
+  system, or devices in the system.
+
+  Format:
+
+      SHOW option
+
+2  CPU
+
+  Displays information about the computer processor(s).
+
+  Format:
+
+      SHOW CPU
+
+3  /BRIEF
+
+  /BRIEF (default)
+
+  Shows only basic informations about the computer processors.
+
+3  /FULL
+  Shows all informations found about the computer processors.
+
+    
+3  Example
+
+  $ SHOW CPU
+  CPU 0
+  Identifier = x86 Family 15 Model 4 Stepping 1
+  ProcessorNameString = Intel(R) Pentium(R) 4 CPU 3.00GHz
+  VendorIdentifier = GenuineIntel
+  FeatureSet = 2147958783  (0x80073FFF)
+  ~MHz = 2992  (0xBB0)
+
+2  DEFAULT
+
+  Displays the current  default  device  and  directory  names.  These
+  defaults  are  applied  whenever  you omit a device and/or directory
+  name from a file specification.
+
+  Format:
+
+      SHOW DEFAULT
+
+3  Example
+
+  $ SHOW DEFAULT DISK1:[ALPHA]
+  $ SET DEFAULT DISK5:[HIGGINS.SOURCES]
+  $ SHOW DEFAULT
+  DISK5:[HIGGINS.SOURCES]
+  The SHOW DEFAULT command requests  a  display of the current default
+  device and directory names.  The SET DEFAULT command  changes  these
+  defaults, and the next SHOW DEFAULT command displays the new default
+  device and directory.
+
+
+2  DEVICES
+
+  Displays the status of a device on the system.
+
+  Format:
+      SHOW DEVICES [device-name[:]]
+
+3  Parameters
+
+ device-name[:]
+ 
+  Specifies  the  name  of  a  device  for  which information is to be
+  displayed. If you issue the SHOW  DEVICES command and do not specify
+  a device name, a listing of characteristics of all disk  devices  on
+  the system.
+
+3  /SIZE
+  /SIZE[=unit]
+
+  Outputs  the  device size and available space in the specified unit.
+  Valid units are BYTES, BLOCKS,  KILOBYTES and MEGABYTES. (Default is
+  BYTES).
+
+2  DOSVAR
+
+ Displays value of DOS environment variables
+
+  Format:
+
+      SHOW DOSVAR [variable-name]
+
+  Parameters variable-name Specifies the name of  the  OS  environment
+  variable  to  be displayed. If omitted, all OS environment variables
+  are listed along with their values.
+ 
+
+2  LOGICAL
+
+  Displays all  logical  names  or  displays  the  current equivalence
+  string, or strings, assigned to a specified logical name  or  names.
+  The SHOW LOGICAL command performs iterative translations.
+
+  Format:
+
+      SHOW LOGICAL [logical-name[:]]
+
+3  logical-name[:]
+
+  Specifies  one  or  more  logical  names  for  which the equivalence
+  strings are to be displayed. The logical  name can have from 1 to 32
+  characters. The logical name  is  translated  iteratively  up  to  a
+  number  of  times  determined by the system (from 9 to 11). That is,
+  the equivalence strings resulting from a translation are examined to
+  see if they  are  also  logical  names.  If  you  do not specify the
+  logical name  parameter,  the  SHOW  LOGICAL  command  displays  all
+  logical names in the logical name table.
+
+3  Examples
+
+  1.  $ SHOW LOGICAL 
+      "SYS$DISK" = "WORK6:" 
+      "SYS$LOGIN" = "WORK6:[ODONNELL]" 
+      "SYS$LOGIN_DEVICE" = "WORK6:" 
+      "SYS$SCRATCH" = "WORK6:[ODONNELL]" 
+  The SHOW LOGICAL command requests a display of the current process logical names.
+
+  2.  $ SHOW LOGICAL INFILE
+      "INFILE" = "WORK6:[LOGAN]PAYROLL.EXE" 
+  The   SHOW  LOGICAL  command  requests  a  display  of  the  current
+  equivalence name for the logical name INFILE.
+
+
+
+2  MEMORY
+
+  Displays the total and available memory size.
+
+  Format:
+
+      SHOW MEMORY
+
+3  Example
+
+  1.  $ SHOW MEMORY
+      Total physical memory : 130496 K.
+      Free  physical memory : 2636 K.
+      Total virtual  memory : 2093056 K.
+      Free  virtual  memory : 2081728 K.
+
+2  PROCESS
+
+   Displays information about a process. 
+
+   Format 
+
+     SHOW PROCESS  [process-id] 
+
+3  /BRIEF
+
+  /BRIEF (default)
+
+  Shows only basic informations about the process.
+      
+3  /ALL 
+
+   Displays the basic subset of information as well as information 
+   about: 
+
+          Memory usage
+          Time info 
+          Groups 
+          Privileges 
+          IO counts 
+          Modules 
+          Threads 
+
+3  /CONTINUOUS 
+
+       Displays continuously updated information about a local process.
+       While the continuous display is running, you can press the 
+       following keys: 
+
+       Key        Action 
+
+       E          Exits the continuous display. 
+       Space bar  Returns to the default display. 
+
+       The /CONTINUOUS qualifier cannot be used with the /OUTPUT 
+       qualifier. 
+
+
+2  STATUS
+
+  Displays the status of the current process.
+  Format:
+
+      SHOW STATUS
+
+3  Example
+
+  1.  $ SHOW STATUS 
+      Status on 15-OCT-1991 22:53:21.00 Elapsed time : 5 min, 12 sec. 
+
+2  SYMBOL
+
+  Displays the current value of a  local or global symbol. Symbols are
+  defined with assignment  statements  (the  =  or  :=  commands),  by
+  parameters  passed to a command procedure file, or by the INQUIRE or
+  READ commands.
+
+  Format:
+
+      SHOW SYMBOL [symbol-name]
+
+3  symbol-name
+
+  Specifies the name of the  symbol  whose  value you want to display.
+  The symbol name can contain  from  1  to  32  characters,  including
+  alphanumeric  characters  from  the DEC Multinational Character Set,
+  underscores, or dollar  signs.  The  symbol  name  must begin with a
+  letter, an underscore, or a dollar  sign.  Wildcard  characters  are
+  allowed  in  the symbol-name specification. If you specify /ALL, you
+  cannot specify a symbol name.
+
+3  /ALL
+
+  Requests that the current  values  of  all  symbols in the specified
+  symbol table be displayed. If you specify /ALL and  do  not  specify
+  either  /LOCAL  or  /GLOBAL,  the  SHOW  SYMBOL command displays the
+  contents of the local symbol table for the current command level.
+
+3  /GLOBAL
+
+  Requests that only  the  global  symbol  table  be  searched for the
+  specified symbol name. If you specify  both  the  /ALL  and  /GLOBAL
+  qualifiers, all names in the global symbol table are displayed.
+
+3  /LOCAL
+
+  Requests  that  only  the local symbol table for the current command
+  level be searched for the specified symbol name. If you specify both
+  the /ALL and /LOCAL qualifiers, all  names in the local symbol table
+  for the current command level are displayed.
+
+3  Examples
+
+  1.  $ SHOW SYMBOL TIME 
+      TIME = "SHOW TIME" 
+  The SHOW SYMBOL command requests  that  the  current  value  of  the
+  symbol  name  TIME  be  displayed.  The  command  interpreter  first
+  searches  the local symbol table for the current command level, then
+  local symbol tables for  preceding  command  levels, and finally the
+  global symbol table. The single equal sign following TIME  means  it
+  is a local symbol.
+
+  2.  $ SHOW SYMBOL/GLOBAL/ALL
+      TIME == "SHOW TIME"
+      LOG == "@LOG" 
+  The SHOW SYMBOL command requests a display of all symbols defined in
+  the global symbol table.
+
+
+2  TIME 
+
+  Displays the current date and time.
+
+  Format
+
+      SHOW TIME
+
+3  Example
+
+  $ SHOW TIME
+  19-APR-1990 00:03:45
+
+  The  SHOW TIME command in this example displays the current date and
+  time.
+
+
+2  TRANSLATION
+
+  Searches the logical name  table  for  a  specified logical name and
+  returns the first equivalence name of the first match found.
+
+  Format:
+
+      SHOW TRANSLATION logical-name
+
+3  logical-name
+
+  Specifies the logical  name  for  which  you  want  to  display  the
+  translation.  The  logical  name can have from 1 to 255 alphanumeric
+  characters.
+
+3  Examples
+
+  1.  $ DEFINE DISK DBA1:
+      $ DEFINE DBA1: DBA0:
+      $ SHOW TRANSLATION DISK
+      DISK = DBA1: 
+  The DEFINE commands place entries  for  the logical name DISK in the
+  logical name table. Then, the SHOW  TRANSLATION  command  shows  the
+  first equivalence name associated with the logical name DISK.
+
+
+2  USER
+
+  Displays  the  user  name  as  given  by  the operating system or as
+  defined in the customization file (DCL.INI).
+
+  Format:
+
+       SHOW USER 
+
+2  KEY
+
+  Displays the key definitions created by the DEFINE/KEY command.
+
+  Format:
+
+      SHOW KEY [key-name]
+
+3  key-name
+
+  Specifies the name of the  key  whose definition you want displayed.
+  See the DEFINE/KEY command for a list of the valid key names.
+
+3  /ALL
+
+  Requests that all key definitions be displayed. If you use the  /ALL
+  qualifier, do not specify a key name.
+
+3  /BRIEF
+
+  /BRIEF (default)
+
+  Requests that only the key definition be displayed.
+
+3  /FULL
+
+  Requests  that all qualifiers that are associated with a definition be
+  displayed. By default, only the definition itself is displayed.
+
+
+2  /OUTPUT
+
+  /OUTPUT[=file-spec]
+
+  Controls where the output  of  the  command  is  sent. If you do not
+  enter the  qualifier,  or  if  you  enter  /OUTPUT  without  a  file
+  specification,  the  output  is  sent to the current process default
+  output stream or device, identified  by the logical name SYS$OUTPUT.
+  If you enter /OUTPUT with a partial file specification (for example,
+  /OUTPUT=[JONES]), SHOW is the default file name and LIS the  default
+  file  type.   If  you enter a file specification, it may not include
+  any wildcard characters.
+
+
+

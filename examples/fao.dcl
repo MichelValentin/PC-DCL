@@ -1,0 +1,20 @@
+set verify
+write sys$output f$fao("!4(10AS)","a","b","c","d")
+write sys$output f$fao("!20%d",0)
+write sys$output f$fao("!4(10OL)",1,-1,0,32768)
+write sys$output f$fao("!4(10XL)",1,-1,0,32768)
+write sys$output f$fao("!4(10ZL)",1,-1,0,32768)
+write sys$output f$fao("!4(10UL)",1,-1,0,32768)
+write sys$output f$fao("!4(10SL)",1,-1,0,32768)
+write sys$output " "
+write sys$output f$fao("!4(10OW)",1,-1,0,32768)
+write sys$output f$fao("!4(10XW)",1,-1,0,32768)
+write sys$output f$fao("!4(10ZW)",1,-1,0,32768)
+write sys$output f$fao("!4(10UW)",1,-1,0,32768)
+write sys$output f$fao("!4(10SW)",1,-1,0,32768)
+write sys$output " "
+write sys$output f$fao("!4(10OB)",1,-1,0,32768)
+write sys$output f$fao("!4(10XB)",1,-1,0,32768)
+write sys$output f$fao("!4(10ZB)",1,-1,0,32768)
+write sys$output f$fao("!4(10UB)",1,-1,0,32768)
+write sys$output f$fao("!4(10SB)",1,-1,0,32768)

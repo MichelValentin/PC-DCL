@@ -1,0 +1,150 @@
+1  DEFINE
+
+  The DEFINE commands perform the following functions:
+
+  -  Creates  a  logical  name  entry  and assigns an equivalence name
+     string to the specified logical name.
+  -  Associates an equivalence string  and  a  set of attributes with a
+     key on the terminal keyboard.
+
+2  logical name
+
+  Creates a logical name entry and assigns an equivalence name string,
+  or a list of strings, to the specified logical name.
+
+  Format:
+
+      DEFINE  logical-name equivalence-name
+
+3  Logical-name
+
+  Specifies the logical name string.   The  logical  name  string  can
+  contain  from  1 to 32 characters. If you specify a colon at the end
+  of a logical name, the DEFINE command saves the colon as part of the
+  logical name. (This  is  in  contrast  to  the ASSIGN command, which
+  removes the colon before placing the name in a logical name table.)
+
+  If the string contains any characters other than alphanumerics,  the
+  dollar  sign,  or  the  underscore  character, enclose the string in
+  quotation marks.   If  the  logical  name  contains quotation marks,
+  enclose the name in quotation marks and use two  sets  of  quotation
+  marks  ("")  in  the  places  where you want a quotation mark (") to
+  occur.  Note that if you enclose a name in quotation marks, the case
+  of alphabetic characters is preserved.
+
+3  Equivalence-name
+
+ Defines the equivalence name to  be  associated with the logical name
+  in the specified logical name table.  An equivalence name string can
+  contain from 1 to  255  characters.   If  the  string  contains  any
+  characters  other  than  alphanumerics,  the  dollar  sign,  or  the
+  underscore character, enclose the string in quotation marks.  If the
+  equivalence  name  contains  quotation  marks, enclose the string in
+  quotation marks and use  two  sets  of  quotation  marks ("") in the
+  places where you want a  quotation  mark  (")  to  occur.  When  you
+  specify   an   equivalence   name  that  will  be  used  as  a  file
+  specification,  you  must  include  the  punctuation  marks (colons,
+  brackets, periods) that would be required if  the  equivalence  name
+  were  used  directly  as  a  file  specification.  Therefore, if you
+  specify a device name as an equivalence name, you must terminate the
+  equivalence name with a colon.
+
+3  /LOG
+
+  /LOG (default)
+  /NOLOG
+
+  Controls whether a message  is  displayed  when you define a logical
+  name that supersedes an existing name.
+
+
+
+3  Example
+
+  1.  $ DEFINE CHARLIE XXX1:[CHARLES]
+      $ PRINT  CHARLIE:TEST.DAT
+
+  The DEFINE command associates the  logical  name  CHARLIE  with  the
+  directory name [CHARLES] on the disk XXX1.  Subsequent references to
+  the  logical  name  CHARLIE result in the correspondence between the
+  logical name CHARLIE  and  the  disk  and  directory specified.  The
+  PRINT command copies of the file XXX1:[CHARLES]TEST.DAT to he system
+  printer.
+
+
+2  KEY
+
+  Associates  an  equivalence  string  with  a  key  on  the  terminal
+  keyboard. The /KEY qualifier is required.
+
+  Format
+
+      DEFINE/KEY  key-name equivalence-string
+
+3  Key-name
+
+  Specifies the name of the key that you are defining.
+
+  Key names can have the following values :
+
+  F1 through F12, SF1 through SF12
+
+
+3  Equivalence-string
+
+  Specifies the character string to be processed when  you  press  the
+  key.  Enclose the string in quotation marks (" ") to preserve spaces
+  and lowercase characters.
+
+
+3  /ECHO
+  /ECHO (Default)
+  /NOECHO
+
+  Displays the equivalence string  on  your  screen  after the key has
+  been  pressed.  You  cannot  use  the  /NOECHO  qualifier  with  the
+  /NOTERMINATE qualifier.
+
+
+3  /ERASE
+
+  Determines whether  the  current  line  is  erased  before  the  key
+  translation is inserted.
+
+
+3  /LOG
+  /LOG (default)
+      /NOLOG
+
+  Displays  a  message  indicating  that  the  key definition has been
+  successfully created.
+
+
+
+3  /TERMINATE
+  /TERMINATE
+  /NOTERMINATE (default)
+
+  Specifies whether the current equivalence  string is to be processed
+  immediately when the key is  pressed  (equivalent  to  entering  the
+  string and pressing the Return key). By default, you can press other
+  keys  before  the definition is processed. This allows you to create
+  key definitions that insert text  into command lines, after prompts,
+  or into other text that you are entering.
+
+
+3  Example
+
+  1.  $ DEFINE/KEY SF1 "SHOW TIME" /TERMINATE
+      Key definition SF1 created.
+      $ SHOW TIME
+      19-APR-1990 14:43:59
+
+  In this example, the DEFINE/KEY command defines the SF1 key  on  the
+  keypad  to  perform  the  SHOW  TIME  command. DEFAULT refers to the
+  default state.
+
+
+
+
+

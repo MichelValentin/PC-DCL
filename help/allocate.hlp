@@ -1,0 +1,45 @@
+1  ALLOCATE
+
+  Establishes a logical name for a device.
+
+  Format:
+
+      ALLOCATE device-name[:] logical-name[:]
+
+2  Device-name[:]
+
+  Specifies the  name  a  device  to  be  searched  for the allocation
+  request.
+
+
+2  Logical-name
+
+  Specifies a 1- through 32-character logical name  to  be  associated
+  with the allocated device. The logical name is placed in the logical
+  name  table,  with  the name of the physical device allocated as its
+  equivalence name. Subsequent references  to  the logical name result
+  in automatic translation  to  the  specified  device  name.  If  you
+  include  a  trailing  colon  (:)  on  the logical name, the colon is
+  removed from the name before the  name is placed in the logical name
+  table.
+
+2 /LOG
+
+  /LOG (default)
+  /NOLOG
+
+  Displays a message indicating the name of the device  allocated.  If
+  the operation specifies a logical name that is currently assigned to
+  another device, displays the superseded value.
+
+
+2  Example
+
+  $ ALLOCATE /LOG C: INPUTDISK:
+  C: allocated as INPUTDISK.
+
+  The  ALLOCATE  command  establishes  a  logical name for the C: disk
+  drive  The  system   response   indicates   that   the  command  was
+  successfully executed.
+
+

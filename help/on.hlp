@@ -1,0 +1,66 @@
+1  ON
+
+  Performs  a  specified  action  when  a  command or program executed
+  within a  command  procedure  encounters  an  error  condition.  The
+  specified actions are performed only if the command  interpreter  is
+  enabled  for error checking interrupts (the default conditions). Use
+  the ON command only in a command procedure.
+
+  Format
+
+      ON  condition THEN [$] command
+2  condition
+
+  Specifies either the severity  level  of an error interrupt. Specify
+  one of the following keywords, which may be abbreviated  to  one  or
+  more characters:
+
+  WARNING        Return status of warning occurs ($SEVERITY equals 1).
+  ERROR          Return status of error occurs ($SEVERITY equals 2).
+  SEVERE_ERROR   Return status of error occurs ($SEVERITY equals 4).
+  CONTROL_Y      CTRL/C character occurs on SYS$INPUT
+  CONTROL_C
+
+  The default error condition is ON ERROR THEN EXIT.
+
+
+2  command
+
+  Specifies the DCL command line  to  be executed. Optionally, you can
+  precede the command line with a dollar sign ($).
+
+  If you specified an error condition as the condition parameter,  the
+  action  is  taken when errors equal to or greater than the specified
+  level of error occur.
+
+
+2  Examples
+
+  1.  $ ON SEVERE_ERROR THEN CONTINUE
+
+  A command  procedure  that  contains  this  statement  continues  to
+  execute  normally  when  a warning or error occurs during execution.
+  When a severe error occurs,  the  ON statement signals the procedure
+  to execute the next statement anyway. Once the  statement  has  been
+  executed  as  a  result  of  the severe error condition, the default
+  action (ON ERROR THEN EXIT) is reinstated.
+
+  2.  $ ON WARNING THEN EXIT
+      .
+      .
+      .
+      $ SET NOON
+      $ RUN [SSTEST]LIBRA
+      $ SET ON
+      .
+      .
+      .
+
+  The ON command requests  that  the  procedure exit when any warning,
+  error, or severe error occurs. Later, the SET NOON command  disables
+  error  checking  before executing the RUN command. Regardless of any
+  status  code  returned  by  the  program  LIBRA.EXE,  the  procedure
+  continues. The next command,  SET  ON,  reenables error checking and
+  reestablishes the most recent ON condition.
+
+

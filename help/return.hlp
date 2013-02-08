@@ -1,0 +1,36 @@
+1  RETURN
+
+  Terminates  a  GOSUB subroutine procedure and returns control to the
+  command following the calling GOSUB command.
+
+  Format
+
+      RETURN  [status-code]
+2  status-code
+
+  Defines  a  longword  (integer) value or expression equivalent to an
+  integer value  that  gives  the  exit  status  of  the subroutine by
+  defining a numeric value for the reserved global symbol $STATUS. The
+  value can be tested by the next outer command level.
+
+  If you do not specify a status code, the current value of $STATUS is
+  saved. When control returns to  the  outer  command  level,  $STATUS
+  contains the status of the most recently executed command.
+
+2  Example
+
+  $ SHOW TIME
+  19-APR-1990 14:25:42
+  $ GOSUB SYMBOL
+  $ EXIT
+  $ SYMBOL:
+  $     SHOW SYMBOL RED
+  RED = "SET DEFAULT [JONES.DCL]"
+  $     RETURN 1
+
+  The  GOSUB  command  transfers  control  to  the  subroutine labeled
+  SYMBOL.  After  the  subroutine  is  executed,  the  RETURN  command
+  transfers control back to the command following  the  calling  GOSUB
+  statement, giving $STATUS a value of 1. The procedure then exits.
+
+

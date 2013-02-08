@@ -1,0 +1,70 @@
+1  Assign
+
+  Creates a logical name  and  assigns  an  equivalence string, to the
+  specified logical name.
+
+  Format:
+
+      ASSIGN  equivalence-name  logical-name[:]
+
+2  equivalence-name
+
+  Defines the equivalence names to be associated with the logical name
+  in the specified logical name table. The equivalence name string can
+  contain from 1  to  255  characters.  If  the  string  contains  any
+  characters  other  than  alphanumerics,  the  dollar  sign,  or  the
+  underscore  character, enclose the string in quotation marks. If the
+  equivalence name contains  quotation  marks,  enclose  the string in
+  quotation marks and use two sets of quotation  marks  (&quot;&quot;)
+  in  the  places  where  you want a quotation mark to occur. When you
+  specify  an  equivalence  name   that   will   be  used  as  a  file
+  specification, you  must  include  the  punctuation  marks  (colons,
+  brackets,  periods)  that  would be required if the equivalence name
+  were used  directly  as  a  file  specification.  Therefore,  if you
+  specify a device name as an equivalence name, terminate  the  device
+  name with a colon.
+
+2  logical-name
+
+  Specifies  the logical name string. The logical name can have from 1
+  to 32 characters. If you  terminate  the  logical name with a colon,
+  the system removes the colon before placing the name  in  a  logical
+  name  table.  (This differs from the DEFINE command, which saves the
+  colon.) By  default,  the  logical  name  is  placed  in the process
+  logical name table.
+
+
+2 /LOG
+
+   /LOG (default)
+  /NOLOG
+
+  Controls whether a message is displayed when you  define  a  logical
+  name that supersedes an existing name.
+
+2  Examples
+
+  1.  $ ASSIGN XXX1:[CHARLES] CHARLIE
+      $ PRINT CHARLIE:TEST.DAT
+
+  The  ASSIGN  command  associates  the  logical name CHARLIE with the
+  directory name [CHARLES] on the  disk XXX1. Subsequent references to
+  the logical name CHARLIE result in the  correspondence  between  the
+  logical name CHARLIE and the disk and directory specified. The PRINT
+  command  queues  a  copy  of  the file XXX1:[CHARLES]TEST.DAT to the
+  system printer.
+
+  2.  $ ASSIGN A: TEMP:
+      $ SHOW LOGICAL TEMP "TEMP" = "A:"
+      $ DEASSIGN TEMP
+
+  The ASSIGN command equates the  logical  name TEMP to the device A:.
+  The SHOW LOGICAL command verifies that the logical  name  assignment
+  was  made.  Note  that  the  logical name TEMP was terminated with a
+  colon in  the  ASSIGN  command,  but  that  the  command interpreter
+  deleted the colon before placing the name in the logical name table.
+  Thus, you can  specify  TEMP  without  a  colon  in  the  subsequent
+  DEASSIGN  command.  You  should  omit  the colon in the SHOW LOGICAL
+  command (for example, SHOW LOGICAL TEMP).
+
+

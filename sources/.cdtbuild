@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<?fileVersion 3.1.0?>
+<ManagedProjectBuildInfo>
+  <project id="dcl2.cdt.managedbuild.target.gnu.exe.981665783" name="Executable (Gnu)" projectType="cdt.managedbuild.target.gnu.exe">
+    <configuration id="cdt.managedbuild.config.gnu.exe.debug.1964876277" name="Debug" description="" parent="cdt.managedbuild.config.gnu.exe.debug" artifactName="dcl" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" cleanCommand="rm -rf" postbuildStep="cp dcl ../../">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.exe.debug" id="cdt.managedbuild.toolchain.gnu.exe.debug.660643054" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1274355839" name="GCC C++ Compiler"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1318751707" name="GCC C Compiler">
+          <option superClass="gnu.c.compiler.option.preprocessor.def.symbols" id="gnu.c.compiler.option.preprocessor.def.symbols.970054336" valueType="definedSymbols">
+            <listOptionValue value="USE_READLINE" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug" id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.474647338" name="GCC C Linker">
+          <option superClass="gnu.c.link.option.libs" id="gnu.c.link.option.libs.702410606" valueType="libs">
+            <listOptionValue value="curses" builtIn="false"/>
+            <listOptionValue value="pcre" builtIn="false"/>
+          </option>
+          <option superClass="gnu.c.link.option.other" id="gnu.c.link.option.other.1698033366" valueType="stringList">
+            <listOptionValue value="-lm" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1428779728" name="GCC C++ Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug" id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1482497008" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <configuration id="cdt.managedbuild.config.gnu.exe.release.111151366" name="Release" description="" parent="cdt.managedbuild.config.gnu.exe.release" artifactName="dcl" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" cleanCommand="rm -rf" postbuildStep="cp dcl ../../">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.exe.release" id="cdt.managedbuild.toolchain.gnu.exe.release.2053313047" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1357267247" name="GCC C++ Compiler"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release" id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.8738716" name="GCC C Compiler">
+          <option superClass="gnu.c.compiler.option.preprocessor.def.symbols" id="gnu.c.compiler.option.preprocessor.def.symbols.1126364947" valueType="definedSymbols">
+            <listOptionValue value="__USE_BSD" builtIn="false"/>
+            <listOptionValue value="USE_CURSES=1" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release" id="cdt.managedbuild.tool.gnu.c.linker.exe.release.999793621" name="GCC C Linker">
+          <option superClass="gnu.c.link.option.libs" id="gnu.c.link.option.libs.200803441" valueType="libs">
+            <listOptionValue value="curses" builtIn="false"/>
+            <listOptionValue value="pcre" builtIn="false"/>
+          </option>
+          <option superClass="gnu.c.link.option.other" id="gnu.c.link.option.other.57442214" valueType="stringList">
+            <listOptionValue value="-lm" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1514803916" name="GCC C++ Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.exe.release" id="cdt.managedbuild.tool.gnu.assembler.exe.release.1569996101" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <configuration id="cdt.managedbuild.config.gnu.exe.debug.650257422" name="Debug - Readline" description="" parent="cdt.managedbuild.config.gnu.exe.debug" artifactName="dcl2" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" cleanCommand="rm -rf" postbuildStep="cp dcl2 ../../">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.exe.debug" id="cdt.managedbuild.toolchain.gnu.exe.debug.1768537952" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.968980181" name="GCC C++ Compiler"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.209142739" name="GCC C Compiler">
+          <option superClass="gnu.c.compiler.option.preprocessor.def.symbols" id="gnu.c.compiler.option.preprocessor.def.symbols.2034640375" name="Defined symbols (-D)" valueType="definedSymbols">
+            <listOptionValue value="USE_READLINE=1" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug" id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.604316526" name="GCC C Linker">
+          <option superClass="gnu.c.link.option.libs" id="gnu.c.link.option.libs.991204350" name="Libraries (-l)" valueType="libs">
+            <listOptionValue value="readline" builtIn="false"/>
+            <listOptionValue value="termcap" builtIn="false"/>
+            <listOptionValue value="pcre" builtIn="false"/>
+          </option>
+          <option superClass="gnu.c.link.option.other" id="gnu.c.link.option.other.1418336437" name="Other options (-Xlinker [option])" valueType="stringList">
+            <listOptionValue value="-lm" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.136324327" name="GCC C++ Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug" id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1587948900" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <configuration id="cdt.managedbuild.config.gnu.exe.debug.1525187978" name="Win32_Debug" description="" parent="cdt.managedbuild.config.gnu.exe.debug" artifactName="dcl2" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" cleanCommand="rm -rf" postbuildStep="cp dcl ../../">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.exe.debug" id="cdt.managedbuild.toolchain.gnu.exe.debug.602000366" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2001435767" name="GCC C++ Compiler"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug" id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1312817402" name="GCC C Compiler">
+          <option superClass="gnu.c.compiler.option.preprocessor.def.symbols" id="gnu.c.compiler.option.preprocessor.def.symbols.860264862" name="Defined symbols (-D)" valueType="definedSymbols">
+            <listOptionValue value="_M_IX86" builtIn="false"/>
+          </option>
+          <option superClass="gnu.c.compiler.option.misc.verbose" id="gnu.c.compiler.option.misc.verbose.1408143938" value="false" valueType="boolean"/>
+          <option superClass="gnu.c.compiler.option.include.paths" id="gnu.c.compiler.option.include.paths.356354666"/>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug" id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1095073419" name="GCC C Linker">
+          <option superClass="gnu.c.link.option.libs" id="gnu.c.link.option.libs.1932238832" name="Libraries (-l)" valueType="libs">
+            <listOptionValue value="pcre" builtIn="false"/>
+          </option>
+          <option superClass="gnu.c.link.option.other" id="gnu.c.link.option.other.1873371279" name="Other options (-Xlinker [option])" valueType="stringList">
+            <listOptionValue value="-lm" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1856873883" name="GCC C++ Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug" id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1962624308" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <macros/>
+  </project>
+</ManagedProjectBuildInfo>

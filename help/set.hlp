@@ -1,0 +1,478 @@
+1  SET
+
+
+  Defines or changes, for the current terminal session or batch job,
+  characteristics associated with files. 
+
+  Format
+
+      SET  option
+
+2  Set_Options
+
+  These are the SET command options:
+  
+  [NO]CONTROL     Enables or disables interrupts caused by CTRL/T or CTRL/C.
+  DEFAULT         Establishes a device and directory as the current default for file specifications.
+  FILE            Modifies the characteristics of one or more files.
+  [NO]ON          Controls whether the command interpreter  checks for an error condition following
+                  the execution of commands in a command procedure. 
+  PROMPT          Defines the DCL prompt.
+  SYMBOL          Controls access to local and global symbols in command procedures. 
+  TIME            Resets the system clock to the specified  value. 
+  TERMINAL        Sets the characteristics of the screen if allowed. (color and video mode) 
+  [NO]VERIFY      Controls whether the command interpreter displays lines in command procedures as it executes them. 
+  
+2  SET FILE
+
+  Modifies the characteristics of one or more files. See the qualifier descriptions for restrictions.
+
+  Format
+
+      SET FILE  filespec
+3  filespec
+
+  Specifies one or more files to be modified.
+  Wildcard characters are allowed.
+
+3  /ATTRIBUTE
+
+  /ATTRIBUTE=[RHSA]
+
+  Sets the corresponding file attributes on. 
+
+  R = Read only
+  H = Hidden
+  S = System
+  A = Archives 
+
+  Attributes not specified are cleared.
+
+3  /BEFORE
+
+  /BEFORE=time
+
+  Selects only those files that are dated before the  specified  time.
+  You can specify either an absolute time or a combination of absolute
+  and  delta  times.   See  the  VMS  DCL Concepts Manual for complete
+  information on specifying time values. You can also use the keywords
+  NOW, TODAY, TOMORROW, and YESTERDAY.
+
+3  /CONFIRM
+
+  Controls whether a request is issued before  each  individual  PRINT
+  operation  to confirm that the operation should be performed on that
+  file. When the system issues  the  prompt,  you can issue any of the
+  following responses:
+
+  YES    NO       QUIT
+  TRUE   FALSE
+  1      0        ALL
+         
+  You can use any combination of upper- and lowercase letters for word
+  responses.  Word responses can be abbreviated to one or more letters
+  (for example, T, TR, or TRU for TRUE).  Affirmative answers are YES,
+  TRUE,  and  1.   Negative  answers  are  NO,  FALSE,  0,  and . QUIT
+  indicates that you  want  to  stop  processing  the  command at that
+  point.  When you respond with ALL, the command continues to process,
+  but no further prompts are given.  If you type a response other than
+  one of those in the list, the prompt will be reissued.
+
+3  /DATE
+
+  /DATE[=date]
+
+  Modifies the file date.
+
+  Specify the date according  to  the  rules  described in the VMS DCL
+  Concepts Manual. Absolute date keywords are allowed. If you  specify
+  zero as the date, today's date is used.
+
+3  /LOG
+
+  Controls whether the SET  command  displays the file specifications
+  of each file processed.
+
+3  /SINCE
+
+  /SINCE=time
+
+  Selects only those files that are dated after the specified time.
+
+  You can specify either an absolute time or a combination of absolute
+  and delta times.  See the  VMS  DCL  Concepts  Manual  for  complete
+  information  on  specifying  time  values.   You  can  also  use the
+  keywords TODAY, TOMORROW, and YESTERDAY.
+
+3  /SUBDIR
+
+  Use this flag for scanning subdirectories when using MS-DOS file
+  specifications.
+
+3  Examples
+
+  1.  $ SET FILE/DATE=19-APR-1990:11:00 BATCH.COM 
+
+  The SET FILE command requests that the file date of the
+  file BATCH.COM be set to 11:00 A.M., April 19, 1990. 
+
+
+  2.  $ SET FILE/ATTR=HR /LOG *.SYS 
+      Attributes of CONFYG.SYS modified.
+      Attributes of MOUSE.SYS modified.
+
+  This SET FILE command calls  for  all  files  that  match  the  file
+  specification  *.SYS  and  sets  their  attributes  to READ ONLY and
+  HIDDEN.
+
+  3.  $ SET FILE/ATTR= /LOG TEST.DAT 
+      Attributes of TEST.DAT modified.
+
+  This SET FILE  command  calls  for  all  files  that  match the file
+  specification *.SYS and clears their attributes.
+
+
+2  SET PROMPT
+
+  Replaces the default DCL prompt ($)  with the specified string.
+
+  Format
+
+      SET PROMPT[=string]
+3  string
+
+  Specifies the new prompt string. The following rules apply:
+  o  All valid ASCII characters can be used.
+  o  No more than 32 characters are allowed.
+  o  To include spaces or lowercase letters, enclose the string
+     in quotation marks (" ").  Otherwise, letters are converted
+     automatically to uppercase; leading and trailing spaces are
+     removed.
+
+  If you do not specify the string parameter with the SET PROMPT
+  command, the default DCL prompt ($)  is restored.
+
+3  Example
+
+  $ SET PROMPT ="What's next?" 
+  What's next? SHOW TIME 
+  19-APR-1990 14:08:58 
+
+  The SET PROMPT command in this example replaces the DCL  prompt  ($)
+  with  the  phrase  "What's  next?".  When you see the prompt on your
+  screen, you can enter any  DCL  command.  This example uses the SHOW
+  TIME command.
+
+
+2  SET SYMBOL
+
+  Controls access to local and global symbols in command procedures.
+
+  Format 
+
+      SET SYMBOL 
+
+3  /SCOPE
+
+  /SCOPE=(keyword,...)
+
+  Controls  access to local and global symbols. Lets you treat symbols
+  as being undefined. Possible keywords are as follows:
+
+  NOLOCAL     Causes all local symbols defined in outer procedure
+              levels to be treated as being undefined by the current
+              procedure and all inner procedure levels.
+
+  LOCAL       Removes any symbol translation limit set by the
+              current procedure level.
+
+  NOGLOBAL    Causes all global symbols to be inaccessible to the
+              current procedure level and all inner procedure levels
+              unless otherwise changed.
+
+  GLOBAL      Restores access to all global symbols. 
+
+3  Examples
+
+  1.  $ SET SYMBOL/SCOPE=NOLOCAL 
+
+  In this example, all local symbols defined in outer procedure levels
+  are now undefined for the current  procedure  level  and  all  inner
+  procedure levels.
+
+
+  2.  $ SET SYMBOL/SCOPE=NOGLOBAL 
+
+  In  this  example,  all  global  symbols are now inaccessible to the
+  current  procedure  level  and  all  inner  procedure  levels unless
+  otherwise changed.
+
+2  SET TIME
+
+  Resets the system clock., which is used both as a  timer  to  record
+  intervals between various internal events, and as a source clock for
+  displaying the time of day.
+
+  Format 
+
+      SET TIME[=time] 
+
+3 time
+
+  Specifies  a  date  in  the  format day-month-year, or a time in the
+  format hour:minute:second.hundredth,  or  both.  These fields accept
+  the following values:
+
+  Field       Type      Values
+  Day         Integer   1 to 31
+  Month       String    JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP,
+                        OCT, NOV, or DEC
+  Year        Integer   1980 to 2099
+  Hour        Integer   0 to 23
+  Minute      Integer   0 to 59
+  Second      Integer   0 to 59
+  Hundredth   Integer   0 to 99
+
+  The hyphens (-), colons (:) and period (.)  are required delimiters.
+  Separate the date and time, when both are specified, with  a  colon.
+  The syntax is sometimes specified as follows:
+
+  [dd-mmm-yyyy[:]] [hh:mm:ss.cc] 
+
+3  Example
+
+  1.  $ SET TIME=19-APR-1990:19:31:0.0 
+
+  The SET TIME command in this example sets the date and time at
+  April 19, 1990, 7:31 P.M.
+
+
+2  SET VERIFY
+
+  Controls  whether command lines and data lines in command procedures
+  are displayed at the terminal or are printed in a batch job log. The
+  information displayed by  the  SET  VERIFY  command  can help you in
+  debugging command procedures.
+
+  Format 
+
+      SET [NO]VERIFY[=([NO]PROCEDURE, [NO]IMAGE)]
+3  Parameters
+
+  PARAMETERS ([NO]PROCEDURE, [NO]IMAGE)
+
+  Specifies one or both  types of verification. Procedure verification
+  causes each DCL command line in a command procedure to be written to
+  the output device. Image verification causes data lines (input  data
+  that  is  included  as  part  of  the  SYS$INPUT input stream) to be
+  written to the output device.
+
+  By default, both types of  verification  are set or cleared with SET
+  VERIFY and SET NOVERIFY. If you specify only one keyword, the  other
+  is  not  affected.  If  you  specify  only  one  keyword,  omit  the
+  parentheses.
+
+3  Examples
+
+  1.  $ SET VERIFY 
+      $ INDEX == "$INDEX.EXE 
+      $ CONTENTS == "$CONTENTS.EXE 
+      $ TABLE == "$TABLE.EXE 
+      $ SET NOVERIFY 
+      $ EXIT 
+
+  Procedure  and  image verification are turned on at the beginning of
+  the command procedure so  that  the  system displays all the command
+  and data lines in the procedure as it reads them. At the end of  the
+  procedure,  the SET NOVERIFY command restores the system default (no
+  procedure or image verification).
+
+
+2  SET DEFAULT 
+
+  Sets your  default  device  and  directory  specifications.  The new
+  default is applied to all subsequent file specifications that do not
+  explicitly include a device or directory name.
+
+  When you change the default device assignment,  the  system  equates
+  the specified device with the logical name SYS$DISK.
+
+  Format
+
+      SET DEFAULT  [device-name:][directory-spec]
+
+3  device-name:
+
+  Specifies the name of the device you want to go to.
+
+
+3  directory-spec
+
+ Specifies the name of the directory you want to go  to.  A  directory
+ name  must  be enclosed in brackets ([ ]).  Use the minus sign (-) to
+ specify the next higher directory from the current default.
+
+ You  must   specify   either   the   device-name   parameter  or  the
+ directory-spec parameter. If you specify only the  device  name,  the
+ current directory is the default for the directory-spec parameter. If
+ you  specify  only  the  directory  name,  the  current device is the
+ default for the device-name parameter.
+
+
+3  Examples
+
+  1.  $ SET DEFAULT [CARPENTER]
+  The  SET  DEFAULT  command  in  this  example  changes  the  default
+  directory to [CARPENTER]. The default disk device does not change.
+
+  2.  $ SET DEFAULT $FLOPPY1:[WATER.MEMOS] 
+  The  SET  DEFAULT  command  in this example sets your default to the
+  WATER.MEMOS subdirectory on $FLOPPY1.
+
+  3.  $ SET DEFAULT $FLOPPY1: 
+  The SET DEFAULT command in  this  example sets the default device to
+  $FLOPPY1. The directory name does not change.
+
+2  SET ON 
+
+  Enables  error  checking  by   the  command  interpreter  after  the
+  execution of each command in a command procedure. Specify  SET  NOON
+  to disable error checking.
+
+  Format
+      
+      SET [NO]ON
+
+3  Example
+
+  $ SET NOON
+  $ DELETE  *.SAV;* 
+  $ SET ON 
+  $ COPY  *.OBJ  *.SAV 
+
+  This command procedure routinely copies all object modules into  new
+  files  with  the file type SAV. The DELETE command first deletes all
+  existing files with the SAV file type, if any.
+         
+  The SET NOON command ensures  that the procedure continues executing
+  even if there are no files with the SAV file  type  in  the  current
+  directory. Following the DELETE command, the SET ON command restores
+  error  checking.  Then the COPY command makes copies of all existing
+  files with OBJ file type.
+
+
+2  SET TERMINAL 
+
+  Sets the characteristics of the screen.
+
+  Format
+
+      SET TERMINAL
+3  /COLOR
+
+  /COLOR=(Text_color,Background_color)
+
+  Sets the text foreground and background colors.
+  Specify the color attributes as character strings with the following
+  values :
+
+  Color   Foreground  Background
+  
+  BLACK        YES        YES
+  BLUE         YES        YES
+  GREEN        YES        YES
+  CYAN         YES        YES
+  RED          YES        YES
+  MAGENTA      YES        YES
+  BROWN        YES        YES
+  LIGHTGRAY    YES        YES
+  DARKGRAY     YES        NO
+  LIGHTBLUE    YES        NO
+  LIGHTGREEN   YES        NO
+  LIGHTCYAN    YES        NO
+  LIGHTRED     YES        NO
+  LIGHTMAGENTA YES        NO
+  YELLOW       YES        NO
+  WHITE        YES        NO
+  
+
+3  /OVERSTRIKE
+
+  /OVERSTRIKE (Default)
+
+  Sets the terminal to overstrike mode. This  feature  allows  you  to
+  type over the current character when you are editing a command line.
+  Set  your  terminal  to insert mode if you want to insert characters
+  when editing command lines.  Press  CTRL/A  or INSERT to switch from
+  one mode to the other.
+
+3  /INSERT
+
+  Sets the terminal to insert mode. This feature allows you to  insert
+  characters   when   editing  command  lines.  The  default  mode  is
+  overstrike, which allows you to type over the current character when
+  editing a command line. Press  CTRL/A  or  INSERT to switch from one
+  mode to the other.
+
+
+3  /CLEAR
+
+  /CLEAR
+  /NOCLEAR  (Default) 
+
+  Specifies  that  the  screen is to be cleared after the SET TERMINAL
+  command execution. (Note that the  screen is always cleared when the
+  video mode is changed).
+
+
+2  SET CONTROL 
+
+      Enables or disables the CTRL/C  or the CTRL/T function. Pressing
+      CTRL/C interrupts a command and returns you to the  DCL  command
+      level. Pressing CTRL/T momentarily interrupts a command to print
+      a line of statistics.
+
+      Format 
+
+          SET [NO]CONTROL[=(T,C)]
+
+3  Parameters
+
+      (T,C)
+      Specifies that T (CTRL/T) or  C (CTRL/C) be enabled or disabled.
+      If you specify only one character, you can omit the parentheses.
+      If you do not specify either T or C, C is the default.
+
+      For compatibility reasons, Y  is  allowed  in  place  of  C  for
+      CTRL/C.
+
+3  Examples
+
+  1.  $ SET NOCONTROL=C 
+  The  SET  CONTROL  command  in  this  example  disables  the  CTRL/C
+  function.
+
+  2.  $ SET NOCONTROL=(T,C)
+ The  SET CONTROL command in this example disables both the CTRL/T and
+ CTRL/C functions.
+
+
+
+2  SET DOSVAR
+
+  Assign a value to DOS environment variables.
+
+  Format
+
+      SET DOSVAR Variable-name=[Value]
+
+      Variable-name
+       
+          Name of the DOS environment variable to be assigned a value.
+
+      Value
+
+          New value to assign to the DOS environment variable. 
+          If omitted, the DOS environment variable will be deleted.
+
+

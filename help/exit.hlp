@@ -1,0 +1,42 @@
+1  EXIT
+
+
+  Terminates processing  of  a  command  procedure  or  subroutine  and
+  returns  control  to the next higher command level-either an invoking
+  command procedure or interactive DCL.
+
+  Format
+
+      EXIT  [status-code]
+
+2  Status-code
+
+  Defines a numeric value for  the reserved global symbol $STATUS. You
+  can specify the status-code parameter as an integer or an expression
+  equivalent to an integer value. The value can be tested by the  next
+  outer  command  level.  If  you  do  not  specify a status code, the
+  current value of $STATUS is saved. When control returns to the outer
+  command level, $STATUS  contains  the  status  of  the most recently
+  executed command or program.
+
+2  Examples
+
+  1.  $ EXIT 1
+
+  The EXIT command in this example exits to the next higher
+  command level giving $STATUS a value of 1.
+
+  2.  $ ON WARNING THEN EXIT
+      $ FORTRAN 'P1'
+      $ LINK 'P1'
+      $ RUN 'P1'
+
+  The EXIT command in this  example  is  used  as  the target of an ON
+  command;  this  statement  ensures  that   the   command   procedure
+  terminates whenever any warnings or errors are issued by any command
+  in the procedure.
+
+  The  procedure exits with the status value of the command or program
+  that caused the termination.
+
+

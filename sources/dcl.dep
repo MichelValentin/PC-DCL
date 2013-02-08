@@ -1,0 +1,83 @@
+Debug/allocate.o: allocate.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/append.o: append.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dclfindfile.h dcltime.h
+Debug/assign.o: assign.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/call.o: call.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/close.o: close.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/cmd.o: cmd.c platform.h splitpath.h dcl.h flexlist.h findfile.h step.h
+Debug/copy.o: copy.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h dclfindfile.h filecopy.h
+Debug/create.o: create.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/dbglog.o: dbglog.c dbglog.h
+Debug/dcl.o: dcl.c platform.h splitpath.h dcl.h flexlist.h findfile.h step.h \
+  dclfindfile.h termio.h dbglog.h
+Debug/dclfindfile.o: dclfindfile.c platform.h splitpath.h dcl.h flexlist.h \
+  findfile.h dbglog.h
+Debug/dclini.o: dclini.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/dcltime.o: dcltime.c platform.h splitpath.h dcltime.h
+Debug/dealloca.o: dealloca.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/define.o: define.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/delete.o: delete.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dclfindfile.h dcltime.h
+Debug/dir.o: dir.c platform.h splitpath.h dcl.h flexlist.h findfile.h dcltime.h \
+  dclfindfile.h termio.h
+Debug/else.o: else.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/endif.o: endif.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/endsubro.o: endsubro.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/expr.o: expr.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/filecopy.o: filecopy.c
+Debug/findfile.o: findfile.c dcl.h platform.h splitpath.h flexlist.h findfile.h \
+  dbglog.h
+Debug/flexlist.o: flexlist.c flexlist.h
+Debug/gosub.o: gosub.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/goto.o: goto.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/help.o: help.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  termio.h
+Debug/hlpvms.o: hlpvms.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  termio.h
+Debug/if.o: if.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/inquire.o: inquire.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h termio.h
+Debug/keyboard.o: keyboard.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dclfindfile.h termio.h
+Debug/lexical.o: lexical.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h dclfindfile.h
+Debug/logical.o: logical.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/on.o: on.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/open.o: open.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/platform.o: platform.c
+Debug/print.o: print.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h
+Debug/read.o: read.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/recall.o: recall.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/rename.o: rename.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h
+Debug/repeat.o: repeat.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/return.o: return.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/run.o: run.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/set.o: set.c platform.h splitpath.h dcl.h flexlist.h findfile.h dcltime.h \
+  step.h termio.h
+Debug/setfile.o: setfile.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h
+Debug/show.o: show.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h
+Debug/step.o: step.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/subrouti.o: subrouti.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/symass.o: symass.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/symbol.o: symbol.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/termio.o: termio.c dcl.h platform.h splitpath.h flexlist.h findfile.h \
+  termio.h
+Debug/termio_mini.o: termio_mini.c dcl.h platform.h splitpath.h flexlist.h \
+  findfile.h termio.h
+Debug/termio_unix.o: termio_unix.c
+Debug/termio_win32.o: termio_win32.c
+Debug/then.o: then.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/type.o: type.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h termio.h
+Debug/wait.o: wait.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  dcltime.h termio.h
+Debug/while.o: while.c platform.h splitpath.h dcl.h flexlist.h findfile.h
+Debug/write.o: write.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  termio.h
+Debug/xcvfs.o: xcvfs.c platform.h splitpath.h dcl.h flexlist.h findfile.h \
+  error.h

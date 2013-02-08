@@ -1,0 +1,102 @@
+1  @ Run DCl command file
+
+  Executes a command procedure.
+
+  Format:
+
+      @ file-spec [p1 [p2 [... p8]]]
+
+2  File-spec
+
+  Specifies either the command procedure to be executed. If you do not
+  specify a file type, the system uses the default file type of DCL or
+  the default file  type  specified  in  the  file  DCL.INI if any. No
+  wildcard characters are allowed in the file specification.  The  DOS
+  path is searched to find the procedure file.
+
+2  Parameters
+
+  Parameters @ p1 [p2 [... p8]]
+
+  Specifies  from  one  to  eight  optional  parameters to pass to the
+  command procedure. The parameters  assign character string values to
+  the symbols named P1, P2, and so on in the  order  of  entry,  to  a
+  maximum  of  eight.  The  symbols are local to the specified command
+  procedure. Separate each  parameter  with  one  or  more blanks. Use
+  quotation marks ("") to specify a null parameter. You can specify  a
+  parameter  with  a character string value containing alphanumeric or
+  special characters, with the following restrictions:
+
+  The command interpreter converts  alphabetic characters to uppercase
+  and uses blanks to delimit each parameter. To pass a parameter  that
+  contains  embedded  blanks  or  literal lowercase letters, place the
+  parameter in quotation marks. If  the  first parameter begins with a
+  slash character (/), you must enclose  the  parameter  in  quotation
+  marks. To pass a parameter that contains literal quotation marks and
+  spaces,  enclose  the  entire  string  in  quotation marks and use a
+  double set of quotation marks within the string.For example: $ @TEST
+  "Never say  ""quit"""  When  the  procedure  TEST.DCL  executes, the
+  parameter P1 is equated to the string: Never say "quit" If a  string
+  contains  quotation marks and does not contain spaces, the quotation
+  marks are  preserved  in  the  string  and  the  letters  within the
+  quotation marks remain in lowercase. For  example:  $  @ANOTHER_TEST
+  abc"def"ghi   When  the  procedure  ANOTHER_TEST.DCL  executes,  the
+  parameter P1 is equated to the string: ABC"def"GHI
+
+  To use a symbol as a parameter, enclose the symbol in apostrophes
+  to force symbol substitution.
+  For example: $ NAME = "JOHNSON" $ @INFO 'NAME' The
+  apostrophes cause the value "JOHNSON" to be substituted for the symbol
+  NAME. Therefore, the parameter "JOHNSON" is passed as P1 to INFO.DCL.
+
+
+2  /OUTPUT
+  /OUTPUT=file-spec
+
+  Requests that all output  directed  to the logical device SYS$OUTPUT
+  be written to the file or device  specified.  System  responses  and
+  error messages are written to SYS$ERROR. If you specify /OUTPUT, the
+  qualifier  must  immediately  follow  the  file specification of the
+  command procedure;  otherwise,  the  qualifier  is  interpreted as a
+  parameter to pass to the command procedure. The default output  file
+  type  is  LIS. No wildcard characters are allowed in the output file
+  specification.
+
+  You can also  redefine  SYS$OUTPUT  to  redirect  the  output from a
+  command procedure. If you place the  command:  $  DEFINE  SYS$OUTPUT
+  file-spec  as  the first line in a command procedure, output will be
+  directed  to  the  file  you  specify.  When  the  procedure  exits,
+  SYS$OUTPUT will be restored to its original equivalence string. This
+  produces the same result  as  using  the  /OUTPUT qualifier when you
+  execute the command procedure.
+
+
+
+2  Examples 
+
+  1.  $ CREATE DOFOR.DCL 
+      $ ON WARNING THEN EXIT 
+      $ IF P1.EQS."" THEN INQUIRE P1 FILE 
+      $ FORTRAN/LIST 'P1'
+      $ LINK 'P1'
+      $ RUN 'P1' 
+
+      $ @DOFOR AVERAGE
+
+  This example  shows  a  command  procedure,  named  DOFOR.DCL,  that
+  executes  the  FORTRAN, LINK, and RUN commands to compile, link, and
+  execute a program. The  ON  command  requests that the procedure not
+  continue if any of the commands result in warnings or  errors.  When
+  you  execute  DOFOR.DCL,  you can pass the file specification of the
+  FORTRAN program as the parameter P1.  If  you do not specify a value
+  for P1 when you execute the procedure, the INQUIRE command issues  a
+  prompting  message  to  the terminal and equates what you enter with
+  the symbol P1. In this example, the file name AVERAGE is assigned to
+  P1.
+
+  2.  $@MASTER/OUTPUT=MASTER.LOG
+
+  This command executes a  procedure  named  MASTER.DCL; all output is
+  written to the file MASTER.LOG.
+
+

@@ -1,0 +1,39 @@
+1  WAIT
+
+  Places the process in a wait  state until a specified period of time
+  has elapsed. The WAIT command is used  in  a  command  procedure  to
+  delay processing of either the procedure itself or a set of commands
+  in the procedure.
+
+  Format:
+
+      WAIT delta-time 
+
+2  delta-time
+
+  Specifies  the  time  interval  to  wait. The time must be specified
+  according to the rules for specifying delta time values as described
+  in the VMS DCL Concepts Manual.   Note, however, that the delta time
+  can contain only the hours,  minutes,  seconds,  and  hundredths  of
+  seconds  fields; the days part must be omitted. Also, the delta time
+  must begin with the number  of  hours  and  not a colon, even if the
+  number of hours is zero.  Note that if you issue  the  WAIT  command
+  interactively,  the  WAIT  command  does  not  prompt you for a time
+  value. However, in order  for  the  command  to have any effect, you
+  must supply a time value.
+
+2 Example
+
+  1.  $LOOP:
+      $ RUN ALPHA
+      $ WAIT 00:10
+      $ GOTO LOOP
+  The command procedure executes the  program  ALPHA.  After  the  RUN
+  command  executes  the program, the WAIT command delays execution of
+  the GOTO command for 10 minutes.  Note  that 00 is specified for the
+  number of hours, because the time specification cannot begin with  a
+  colon.  After  10  minutes,  the  GOTO  command  executes,  and  the
+  procedure  transfers  control  to  the  label  LOOP and executes the
+  program ALPHA again. The procedure  loops until it is interrupted or
+  terminated.
+

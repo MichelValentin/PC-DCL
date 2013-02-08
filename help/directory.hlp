@@ -1,0 +1,237 @@
+1  DIRECTORY
+
+
+  Provides  a  list  of  files or information about a file or group of
+  files.
+
+  Format:
+
+      DIRECTORY  [file-spec]
+
+2  Filespec
+
+  Specifies one or more  files  to  be  listed.   The syntax of a file
+  specification determines which files will be listed, as follows:
+
+  If you do not enter a  file  specification,  the  DIRECTORY  command
+  lists  all  the  files  in  the  current  default directory.  If you
+  specify only a device name,  the DIRECTORY command uses your default
+  directory specification.  Whenever the file specification  does  not
+  include  a  file  name  and  file  type,  all files in the specified
+  directory are listed.  If a  file specification contains only a file
+  name, the DIRECTORY command lists all files in the  current  default
+  directory with that name, regardless of file type.
+
+  You can use wildcard characters in the directory specification, file
+  name,  or file type fields of a file specification to list all files
+  that satisfy the components you specify.
+
+2  /ALL
+
+  Selects all the files,  including  those  with  the HIDDEN or SYSTEM
+  attribute flag on.
+
+
+2  /ATTRIBUTE
+
+  Provides the file attributes for each file listed.
+
+
+2  /BEFORE
+
+  /BEFORE=time
+
+  Selects only those files that are dated before the specified time.  
+  You can specify either an absolute time or a combination of absolute
+  and  delta  times.   See  the  VMS  DCL Concepts Manual for complete
+  information on specifying time values. You can also use the keywords
+  NOW, TODAY, TOMORROW, and YESTERDAY.
+
+
+
+2  /BRIEF
+
+  /BRIEF (default)
+
+  Includes only the file  name  and  type  of  each file to be listed.
+  However, the /BRIEF qualifier, whether specified  explicitly  or  in
+  effect  by  default,  is  overridden  whenever  one of the following
+  formatting qualifiers  is  specified  in  the command:  /ATTRIBUTES,
+  /DATE, /FULL or /SIZE.
+
+
+2  /COLUMNS
+
+  /COLUMNS=n
+
+  Lists the files using the specified number of columns on  each  line
+  of  the  display.   By  default,  the number of columns in the brief
+  format is five.  However,  you  can  request  as many columns as you
+  like.
+
+  The /COLUMNS qualifier is available only in brief output format.
+
+
+
+2  /DATE
+
+  Provides the creation or modification date for each specified  file.
+
+
+
+2  /FULL
+
+  Lists the following items for each file:
+
+  File name
+  File type
+  Number of bytes used
+  File date
+  File attributes
+  Number of clusters allocated
+
+  The /FULL qualifier overrides the default brief listing format.
+
+
+
+2  /GRAND_TOTAL
+
+  Suppresses  both  the  per-directory  total  and   individual   file
+  information.   /GRAND_TOTAL  displays  only  the  total line for all
+  files and directories that  have  been selected.  (See the /TRAILING
+  qualifier for information on displaying directory totals.)
+
+
+
+2  /HEADING
+
+   /HEADING (Default)
+   /NOHEADING
+
+  Controls whether heading lines consisting of  a  device  description
+  and  directory specification are printed.  The default output format
+  provides this heading.
+
+  You may  find  the  combination  of  the  /NOHEADING and /NOTRAILING
+  qualifiers useful in command procedures where you want to  create  a
+  list of complete file specifications for later operations.
+
+
+2  /OUTPUT
+
+  /OUTPUT[=file-spec]
+
+  Controls  where  the  output  of the command is sent.  If you do not
+  enter  the  qualifier,  or  if  you  enter  /OUTPUT  without  a file
+  specification, the output is sent to  the  current  process  default
+  output stream or device, identified by the logical name SYS$OUTPUT.
+
+  If you enter /OUTPUT with a partial file specification (for example,
+  /OUTPUT=[JONES]),  DIRECTORY  is  the  default file name and LIS the
+  default file type.  If you  enter  a  file specification, it may not
+  include any wildcard characters.
+
+
+
+2  /PAGE
+
+  Requests that output from the DIRECTORY  command  be  displayed  one
+  screen at a time.
+
+  The /PAGE qualifier is incompatible with the /OUTPUT qualifier.
+
+
+2  /SINCE
+
+  /SINCE=time
+
+  Selects only those files that are dated after the specified time.
+
+  You can specify either an absolute time or a combination of absolute
+  and delta times.  See the  VMS  DCL  Concepts  Manual  for  complete
+  information  on  specifying  time  values.   You  can  also  use the
+  keywords TODAY, TOMORROW, and YESTERDAY.
+
+
+2  /SIZE
+
+  /SIZE[=unit]
+
+  Provides the file size used  for  each  file listed in the specified
+  unit. Valid units are BYTE, KILOBYTE, MEGABYTE,  GIGABYTE.  (Default
+  is BYTE).
+
+
+
+2  /SUBDIR
+
+  Use  this  flag  for scanning subdirectories when using WINDOWS file
+  specifications.
+
+
+2  /SORT
+
+  /SORT[=sort-key]
+  /ORDER[=sort-key]
+
+  Controls the sort order of the directory listing. Enter the sort key
+  as one of the following string:
+
+  o  NONE         Files appear as the are stored on the file system. 
+  o  NAME         Files are sorted by name
+  o  EXTENSION    Files are sorted by extension and by name
+  o  SIZE         Files are sorted by size
+  o  DATE         Files are sorted by date and time
+
+  If you omit the sort key, the directory listing will be sorted by name.
+  You may specify only one sort key. 
+
+
+2  /TOTAL
+
+  Suppresses  the  listing  of  all  individual  file  information and
+  displays only the trailing lines, as described under  the  /TRAILING
+  qualifier.
+
+  By default, the output format is /BRIEF, which gives this total, but
+  also  lists  all  the  file  names,  file  types,  and their version
+  numbers.
+
+
+2  /TRAILING
+   /TRAILING (Default)
+   /NOTRAILING
+
+  Controls  whether  trailing  lines   that  summarize  the  following
+  information are output:
+
+  o  Number of files listed
+  o  Total number of bytes used per directory
+  o  Total number of directories and total bytes used in all directories
+     (only if more than one directory is listed)
+
+  By  default,  the  output  format  includes  most  of  this  summary
+  information.   The  /SIZE  and  /FULL  qualifiers   determine   more
+  precisely  what  summary information is included.  If you omit /SIZE
+  or /FULL, only the  number  of  files  is displayed and possibly the
+  total number of directories, if  applicable.   If  you  specify  the
+  /SIZE  qualifier,  the  number  of  bytes is also displayed.  If you
+  specify the /FULL qualifier,  the  number  of  files  as well as the
+  number of bytes used are displayed.
+
+
+
+2  Examples
+
+  1.  $ DIRECTORY AVERAGE.*
+
+      Directory DISK$DOCUMENT:[MALCOLM]
+
+      AVERAGE.EXE     AVERAGE.FOR     AVERAGE.LIS    AVERAGE.OBJ
+
+      Total of 4 files.
+
+    In this example, the DIRECTORY command lists all  files  with  the
+    file name AVERAGE and any file type.
+
+

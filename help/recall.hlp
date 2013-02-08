@@ -1,0 +1,76 @@
+1  RECALL
+
+ Displays  previously  entered  commands  on the screen for subsequent
+ execution.
+ 
+ Format
+
+      RECALL  [command-specifier]
+
+2  command-specifier
+
+  Specifies the number or the first several characters of the  command
+  you want to recall.
+
+  The  specified  characters should be unique. If they are not unique,
+  the RECALL command displays  the  most recently entered command line
+  that matches those characters. For example, suppose you enter a SHOW
+  STATUS command and later enter a SHOW TIME command. If you then type
+  RECALL S, the SHOW TIME command is recalled. You  must  type  RECALL
+  SHOW  S to recall the SHOW STATUS command. The number of the command
+  can be from 1 to 20 (where 1 is the last command entered).
+
+  The RECALL command itself is never  assigned a number. If no command
+  specifier is entered, the RECALL command recalls the  most  recently
+  entered  command.  You can use the /ALL qualifier to have the system
+  display all the  commands  in  the  RECALL  buffer, along with their
+  command numbers, to verify the number of the  command  you  want  to
+  recall.
+
+2  /ALL
+
+  Displays  all the commands (and their numbers) available for recall.
+  Remember that the  RECALL  command  is  never  stored  in the RECALL
+  buffer.
+
+
+2  /ERASE
+
+  Erases the contents of the recall buffer.
+
+2  Examples
+
+  1.  $ RECALL T
+  The RECALL command in this example recalls the last command  entered
+  that begins with the letter T.
+
+  2.  $ SHOW DEFAULT
+      DISK3:[SMITH]
+      $ DIRECTORY SEPT*
+      No files found
+      $ SET DEFAULT [SMITH.LETTERS]
+      $ RECALL/ALL
+      1 SET DEFAULT [SMITH.LETTERS]
+      2 DIRECTORY SEPT*
+      3 SHOW DEFAULT
+      $ RECALL 2
+      $ DIRECTORY SEPT*
+      No files found
+      $ RECALL 2
+      $ SET DEFAULT [SMITH.LETTERS]
+      $ SET DEFAULT [SMITH.MEMOS]
+      $ RECALL 2
+      $ DIRECTORY SEPT*
+  This example starts with  a  SHOW  DEFAULT  and a DIRECTORY command.
+  After not finding the file you want, enter the SET  DEFAULT  command
+  to move to the LETTERS subdirectory. Next use the RECALL/ALL command
+  to  see  the  list  of commands you have entered. Enter the RECALL 2
+  command to repeat the DIRECTORY command in the LETTERS subdirectory.
+  Because you still have not found the file you want, enter the RECALL
+  2 command again to recall  the  SET DEFAULT command. (With the entry
+  of the latest DIRECTORY command, SET DEFAULT becomes  command  2  in
+  the  RECALL list.) Edit the command line so that the system sets the
+  default to the  MEMOS  subdirectory.  Finally,  recall the DIRECTORY
+  command to try once more to find the file.
+
+

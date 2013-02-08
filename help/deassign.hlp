@@ -1,0 +1,48 @@
+1  DEASSIGN
+
+  Cancels logical name assignments made  with the ALLOCATE, ASSIGN  or
+  DEFINE command.
+
+  Format:
+
+      DEASSIGN  [logical-name[:]]
+2  Logical-name[:]
+
+  Specifies the logical name to be deassigned.  Logical names can have
+  from  1  to  32  characters.   If  the  logical  name  contains  any
+  characters other than  alphanumerics,  dollar signs, or underscores,
+  enclose it in quotation marks.
+
+  If you terminate  the  logical-name  parameter  with  a  colon,  the
+  command  interpreter  ignores  the colon.  (Note that the ASSIGN and
+  ALLOCATE commands  remove  a  trailing  colon,  if  present,  from a
+  logical name before placing the name in a logical name table.) If  a
+  colon  is  present  in  the  actual  logical name, you must type two
+  colons on the logical-name  parameter  for the DEASSIGN command (for
+  example, DEASSIGN FILE::).
+
+  The logical-name parameter is  required  unless  you  use  the  /ALL
+  qualifier.
+
+
+2  /ALL
+
+  Specifies that all user defined logical names are to be deleted.
+  If you specify /ALL, you cannot enter a logical-name parameter.
+
+
+2  Example
+
+  $ ASSIGN USER_DISK:   DATA
+  .
+  .
+  .
+  $ DEASSIGN DATA
+
+  The  ASSIGN command associates the logical name DATA with the device
+  specification USER_DISK. Subsequent  references  to the logical name
+  DATA result in references  to  the  disk  USER_DISK:.  The  DEASSIGN
+  command cancels the logical name assignment.
+
+
+

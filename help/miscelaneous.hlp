@@ -1,0 +1,48 @@
+1  Miscellaneous
+
+2  What is PC-DCL ?
+
+  PC-DCL is but a small subset of OPENVMS DCL ported to the  Microsoft
+  Windows 32 platform. This is by no mean an attempt to bring full VMS
+  on  to  Windows.  Lots  of  features are missing but you may find it
+  useful to run more powerful script  file than BAT files, if you want
+  to share (simples) DCL command files between your PC  and  your  VMS
+  machine; or even if you want to run a DCL-like shell.
+
+2  Comments
+
+  Please send your comments, suggestions, bug reports to michel.valentin@advalvas.be.
+
+2  DCL.INI 
+
+  Use the DCL.INI customization file to specify the following options : 
+
+3  Username
+
+  Username = string  
+  Enter  the  string you would like to see in the SHOW USER command or
+  in the F$USERNAME  lexical  function  if  your Windows configuration
+  does not support user name.
+
+3  DefCmdFileExt 
+
+  DefCmdFileExt = string
+  Specify the  default  file  extension  for  PC-DCL  procedures  file
+  (maximum three characters). If missing, .DCL is assumed.
+
+3  FileSpecs
+
+  FileSpecs = DOS | VMS
+  Specify the file specification type you want to use :
+  VMS : DEV:[DIR1.DIR2...]NAME.EXT;VERS
+  DOS : D:\DIR1\DIR2\NAME.EXT
+
+4  AllowDosCmd
+
+  AllowDosCmd = YES | NO
+  Controls whether unknown PC-DCL  command  are  passed to MSDOS to be
+  executed out of PC-DCL.
+
+
+
+

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 3.1.0?>
+
+<ManagedProjectBuildInfo>
+<project id="dcl2m.cdt.managedbuild.target.gnu.cygwin.exe.1042837048" name="Executable (Gnu on Windows)" projectType="cdt.managedbuild.target.gnu.cygwin.exe">
+<configuration artifactExtension="exe" artifactName="dcl2" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.1533294590" name="Win32_Debug" parent="cdt.managedbuild.config.gnu.cygwin.exe.debug" postannouncebuildStep="" postbuildStep="cp dcl2.exe ../../">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.1860206660" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug">
+<option id="gnu.c.compiler.option.misc.verbose.1989220219" superClass="gnu.c.compiler.option.misc.verbose" value="false" valueType="boolean"/>
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.1958603618" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="STDC_HEADERS"/>
+<listOptionValue builtIn="false" value="_WIN32_WINNT=0X500"/>
+<listOptionValue builtIn="false" value="PCRE_STATIC"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug.1344792980" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.908721806" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug">
+<option id="gnu.c.link.option.userobjs.1987088591" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
+<listOptionValue builtIn="false" value="dcl.res"/>
+</option>
+<option id="gnu.c.link.option.libs.1462280283" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="pcre"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.1586694598" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.1324211667" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.1533294590./dcl2/termio_ansi.c" name="termio_ansi.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_ansi.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954./dcl2/termio_ansi.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954./dcl2/termio_ansi.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.1533294590./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954./dcl2/termio_mini.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954./dcl2/termio_mini.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.175303954"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="false" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.1533294590./dcl2/dcl.rc" name="dcl.rc" rcbsApplicability="override" resourcePath="/dcl2/dcl.rc" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.970760975">
+<tool announcement="Invoking: Resource Custom Build Step" command="windres  --output-format=coff  ../dcl.rc  dcl.res" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.970760975" name="Resource Custom Build Step">
+<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1373810342" name="Resource Custom Build Step Input Type">
+<additionalInput kind="additionalinputdependency" paths=""/>
+</inputType>
+<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.978529688" name="Resource Custom Build Step Output Type" outputNames="dcl.res"/>
+</tool>
+</resourceConfiguration>
+</configuration>
+<configuration artifactExtension="exe" artifactName="dcl2" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1698107640" name="Win32_Release" parent="cdt.managedbuild.config.gnu.cygwin.exe.release" postbuildStep="cp dcl2.exe ../../">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.release.943447245" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.release">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release">
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.1315015081" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="STDC_HEADERS"/>
+<listOptionValue builtIn="false" value="_WIN32_WINNT=0X500"/>
+<listOptionValue builtIn="false" value="NDEBUG"/>
+<listOptionValue builtIn="false" value="PCRE_STATIC"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release.1959853501" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release.1935396359" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release">
+<option id="gnu.c.link.option.userobjs.2099915725" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
+<listOptionValue builtIn="false" value="dcl.res"/>
+</option>
+<option id="gnu.c.link.option.libs.895445162" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="pcre"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release.1402468472" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release.1572370975" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1698107640./dcl2/termio_ansi.c" name="termio_ansi.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_ansi.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741./dcl2/termio_ansi.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741./dcl2/termio_ansi.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1698107640./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741./dcl2/termio_mini.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741./dcl2/termio_mini.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.723318741"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="false" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1698107640./dcl2/dcl.rc" name="dcl.rc" rcbsApplicability="override" resourcePath="/dcl2/dcl.rc" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.269881152">
+<tool announcement="Invoking: Resource Custom Build Step" command="windres  --output-format=coff  ../dcl.rc  dcl.res" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.269881152" name="Resource Custom Build Step">
+<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.41604212" name="Resource Custom Build Step Input Type">
+<additionalInput kind="additionalinputdependency" paths=""/>
+</inputType>
+<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.726360951" name="Resource Custom Build Step Output Type" outputNames="dcl.res"/>
+</tool>
+</resourceConfiguration>
+</configuration>
+<configuration artifactExtension="" artifactName="dcl2" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.894433533" name="Unix_debug" parent="cdt.managedbuild.config.gnu.cygwin.exe.debug" postbuildStep="cp dcl2 ../../">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.1225686734" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
+<tool command="gcc" id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug">
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.186691101" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="NOUSE_READLINE=1"/>
+</option>
+</tool>
+<tool command="g++" id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug.975910351" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug"/>
+<tool command="gcc" id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.1287483788" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug">
+<option id="gnu.c.link.option.libs.767313954" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="readline"/>
+<listOptionValue builtIn="false" value="termcap"/>
+</option>
+<option id="gnu.c.link.option.ldflags.1261924678" superClass="gnu.c.link.option.ldflags" value="-lm" valueType="string"/>
+</tool>
+<tool command="g++" id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.784213603" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug"/>
+<tool command="as" id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.190661152" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.894433533./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887./dcl2/termio_mini.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887./dcl2/termio_mini.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887"/>
+</resourceConfiguration>
+</configuration>
+<configuration artifactExtension="exe" artifactName="dcl2m" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.release.347541772" name="Unix_release" parent="cdt.managedbuild.config.gnu.cygwin.exe.release">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.release.1064653058" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.release">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release">
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.1843694524" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="USE_READLINE=1"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release.1351155813" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release.2073811992" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release">
+<option id="gnu.c.link.option.libs.58076696" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="readline"/>
+<listOptionValue builtIn="false" value="termcap"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release.2013968017" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release.822719449" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.release.347541772./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316./dcl2/termio_mini.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316./dcl2/termio_mini.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316"/>
+</resourceConfiguration>
+</configuration>
+<configuration artifactExtension="" artifactName="dcl2" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.640856427" name="Curses_debug" parent="cdt.managedbuild.config.gnu.cygwin.exe.debug" postbuildStep="cp dcl2 ../../">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.1594546340" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
+<tool command="gcc" id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.594469791" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug">
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.993779906" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="USE_CURSES=1"/>
+</option>
+<option id="gnu.c.compiler.option.misc.verbose.2025013394" superClass="gnu.c.compiler.option.misc.verbose" value="false" valueType="boolean"/>
+</tool>
+<tool command="g++" id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug.1329630650" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.debug"/>
+<tool command="gcc" id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug.72814858" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.debug">
+<option id="gnu.c.link.option.libs.442688011" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="curses"/>
+</option>
+<option id="gnu.c.link.option.ldflags.1339128193" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="-lm" valueType="string"/>
+</tool>
+<tool command="g++" id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug.643068675" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.debug"/>
+<tool command="as" id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.577297031" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.640856427./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887.1494249206">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1959331887.1494249206" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.594469791"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.debug.640856427./dcl2/termio_ansi.c" name="termio_ansi.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_ansi.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.594469791./dcl2/termio_ansi.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.594469791./dcl2/termio_ansi.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.594469791"/>
+</resourceConfiguration>
+</configuration>
+<configuration artifactExtension="exe" artifactName="dcl2" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1675505627" name="Curses_release" parent="cdt.managedbuild.config.gnu.cygwin.exe.release">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.release.672218355" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.release">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.2034702656" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release">
+<option id="gnu.c.compiler.option.preprocessor.def.symbols.324161949" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="USE_READLINE=1"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release.1552016600" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release.1783612336" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.exe.release">
+<option id="gnu.c.link.option.libs.634516218" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="readline"/>
+<listOptionValue builtIn="false" value="termcap"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release.220298293" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.exe.release"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release.637039430" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.release"/>
+<macros/>
+</toolChain>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1675505627./dcl2/termio_mini.c" name="termio_mini.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_mini.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316.1017629035">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.1549827316.1017629035" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.2034702656"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="cdt.managedbuild.config.gnu.cygwin.exe.release.1675505627./dcl2/termio_ansi.c" name="termio_ansi.c" rcbsApplicability="disable" resourcePath="/dcl2/termio_ansi.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.2034702656./dcl2/termio_ansi.c">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.2034702656./dcl2/termio_ansi.c" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.2034702656"/>
+</resourceConfiguration>
+</configuration>
+<macros/>
+</project>
+</ManagedProjectBuildInfo>

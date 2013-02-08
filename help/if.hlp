@@ -1,0 +1,106 @@
+1  IF
+
+ Tests  the  value  of  an  expression  and  depending  on  the syntax
+ specified, executes
+ - one command following the THEN keyword if the test is true
+ - multiple commands following the $THEN statement if the expression is
+   true
+ - one or more commands following the $ELSE statement if the expression
+   is false
+
+ Format:
+
+      $ IF  expression THEN [$] command
+      or
+      $ IF  expression
+      $   THEN [command]
+      $         command
+      $            .
+      $   [ELSE [command]
+      $          command
+      $            .    ]
+      $   ENDIF
+
+2  Expression
+
+  Defines the test to be performed.  The expression can consist of one
+  or more numeric  constants,  string  literals,  symbolic  names,  or
+  lexical  functions  separated  by  logical,  arithmetic,  or  string
+  operators.
+
+  Expressions  in  IF  commands are automatically evaluated during the
+  the execution of the command.   All character strings beginning with
+  alphabetic characters that are not enclosed in quotation  marks  are
+  assumed  to be symbol names or lexical functions, and the IF command
+  replaces them with their current values.
+
+  Symbol substitution in expressions in  IF commands is not iterative;
+  that is, each symbol is replaced only once.  However,  if  you  want
+  iterative  substitution,  you  can  precede  a  symbol  name with an
+  apostrophe or ampersand.
+
+  The command interpreter  does  not  execute  an  IF  command when it
+  contains an  undefined  symbol.  Instead,  the  command  interpreter
+  issues  a  warning  message  and  executes  the  next command in the
+  procedure.
+
+2  Command
+
+  Defines the action to take if the result of the expression is true.
+
+  The command parameter can be any valid DCL command, whether THEN  is
+  used  as  a  keyword (after IF and not preceded by a dollar sign) in
+  the "single line" IF syntax or as  a verb (a DCL command preceded by
+  a dollar sign) in the block-structured IF syntax.
+
+2  Restrictions
+
+  The following restrictions apply to the block-structured IF command:
+  - IF statements can be nested to 16 levels.
+  - A command  block  started by a THEN statement must be terminated by
+    either an ELSE or ENDIF statement.
+  - A THEN  statement must  be the first executable statement following
+    an IF statement.
+  - THEN,  ELSE,  and  ENDIF  statements cannot be abbreviated to fewer
+    than four characters.
+
+2  Examples
+
+  1.  $ COUNT = 0
+      $ LOOP:
+      $ COUNT = COUNT + 1
+        .
+        .
+        .
+      $ IF COUNT .LE. 10 THEN GOTO LOOP
+      $ EXIT
+
+  This example shows how to establish a loop in a  command  procedure,
+  using  a  symbol  named COUNT and an IF statement.  The IF statement
+  checks the value of  COUNT  and  performs  an  EXIT command when the
+  value of COUNT is greater than 10.
+
+  2.  $ IF F$MODE() .EQS. "INTERACTIVE"
+      $   THEN
+      $     GOTO INTERACTIVE_SETUP
+      $   ELSE
+      $     GOTO BATCH_SETUP
+      $   ENDIF
+      $ INTERACTIVE_SETUP:
+        .
+      $ BATCH_SETUP:
+        .
+      $ EXIT
+
+  This example shows how the IF  command  executes one of two paths of
+  code based on the result of a call to the F$MODE() lexical function.
+  The  IF  statement  determines  whether  the  processing   mode   is
+  interactive.  If the mode is interactive, the commands following the
+  $THEN  are  executed  to  establish  a process name for the session;
+  control is then  transfered  to  a  labeled  region where the user's
+  interactive environment is established. If the  processing  mode  is
+  not  interactive,  the  commands following the $ELSE are executed to
+  set up  a  process  name  and  environment  for  the non-interactive
+  session.
+
+
